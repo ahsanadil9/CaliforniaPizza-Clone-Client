@@ -1,9 +1,9 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 import PizzaImage from "app/assets/PizzaImage.webp";
 
-export default function PizzaCart({ item }) {
-  const pizzas = [
+export default function PizzaCart() {
+  const pizzaItems = [
     {
       id: 1,
       name: "Arizona Cream",
@@ -48,27 +48,17 @@ export default function PizzaCart({ item }) {
     },
   ];
 
-  // const cartItems = pizzas.map((pizza) => {
-  //   return {
-  //     id: pizza.id,
-  //     name: pizza.name,
-  //     description: pizza.description,
-  //     price: pizza.price,
-  //     discountedPrice: pizza.discountedPrice,
-  //     image: pizza.image,
-  //     quantity: 4,
-  //   };
-  // });
-  // const cartItems = pizzas[0];
   return (
     <div>
+      {/* navbar */}
       <nav className="fixed z-50 top-0 w-full bg-white border-b-2 shadow-black-500 shadow-sm">
         <div className="flex items-center px-4 py-3">
           <h1 className="text-red-500 font-bold">California</h1>
           <h1 className="text-green-500">Pizza</h1>
         </div>
       </nav>
-      <div className="min-h-screen lg:pt-24 lg:px-22 md:pt-24 md:px-10 pt-24 px-6">
+      {/* main content */}
+      <main className="min-h-screen lg:pt-24 lg:px-22 md:pt-24 md:px-10 pt-24 px-6">
         <div className="relative flex items-center border border-gray-300 rounded-full w-full">
           <input
             type="search"
@@ -93,61 +83,66 @@ export default function PizzaCart({ item }) {
             </svg>
           </button>
         </div>
-        <div>
-          <div className="p-12 text-center text-3xl font-serif mt-3 mb-[-19rem]">
+        <section>
+          <h1 className="p-12 text-center text-3xl font-serif mt-3 mb-[-19rem]">
             OVERLOAD MEATY PIZZA
-          </div>
-
-          <div className="relative min-h-screen lg:px-22 lg:mb-52 md:pt-24 md:px-10 pt-24 px-6">
-            <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {pizzas.map((cartItems) => (
-                <div
-                  key={cartItems.id}
+          </h1>
+          {/* pizza item cart selection */}
+          <div className="relative min-h-screen lg:px-22 lg:mb-56 md:pt-24 md:px-10">
+            <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-14 md:grid-cols-2 sm:grid-cols-2">
+              {pizzaItems.map((pizzaItem) => (
+                <article
+                  key={pizzaItem.id}
                   className="relative flex flex-col items-start lg:mt-40 md:mt-96"
                 >
                   <Image
-                    src={cartItems.image}
-                    alt="Pizza"
-                    className="z-30 mt-9 pizza-image"
+                    src={pizzaItem.image}
+                    alt="Pizza Image"
+                    className="z-30 mt-8"
                     style={{ borderRadius: "40px" }}
-                    width={364}
+                    width={383}
                     height={100}
                   />
                   <span
                     style={{ transform: "skewX(-20deg)" }}
-                    class="absolute top-12 right-10 left-30 p-1 bg-yellow-400 z-40 text-black text-sm font-bold animate-pulse"
+                    className="absolute top-12 right-10 left-30 p-1 bg-yellow-400 z-40 text-black text-sm font-bold animate-pulse"
                   >
                     35% OFF
                   </span>
 
-                  <div className="absolute bg-gray-200 text-white lg:px-9 lg:pt-28 lg:pb-7 md:mt-48 lg:mt-80 lg:mb-56 z-10 rounded-2xl">
-                    <h3 className="text-lg font-bold text-black">
-                      {cartItems.name}
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                      {cartItems.description}
-                    </p>
-                    <div className="flex mt-6">
-                      <p className="text-sm pr-1 font-bold text-black">From</p>
-                      <p className="text-sm pr-1 font-bold text-red-600">
-                        <del>Rs. {cartItems.price}</del>
-                      </p>
-                      <p className="text-sm pr-1 font-bold text-green-700">
-                        Rs.{cartItems.discountedPrice}
+                  <div className="absolute bg-gray-100 text-white lg:px-6 lg:pt-14 lg:mt-[52vh] z-10 rounded-2xl w-full  md:mt-48 h-[38vh]">
+                    <div className="pb-7 pt-3">
+                      <h3 className="text-lg font-extrabold text-black">
+                        {pizzaItem.name}
+                      </h3>
+                      <p className="text-xs text-gray-500 h-8 pt-1">
+                        {pizzaItem.description}
                       </p>
                     </div>
+
                     <div>
-                      <button className="bg-red-700 mt-2 text-white p-2 rounded-md w-full">
-                        Add To Cart
+                      <div className="flex">
+                        <p className="text-sm pr-1 font-extrabold text-black px-2">
+                          From
+                        </p>
+                        <p className="text-sm pr-1 font-bold text-red-600">
+                          <del>Rs. {pizzaItem.price}</del>
+                        </p>
+                        <p className="text-sm pr-1 font-bold text-green-700">
+                          Rs.{pizzaItem.discountedPrice}
+                        </p>
+                      </div>
+                      <button className="bg-red-600 mt-2 text-white p-2 rounded-md w-full">
+                        Add {pizzaItem.name} To Cart
                       </button>
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
