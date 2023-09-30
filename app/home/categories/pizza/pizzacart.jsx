@@ -6,6 +6,7 @@ export default function PizzaCart() {
   const pizzaItems = [
     {
       id: 1,
+      discountTag: 35,
       name: "Arizona Cream",
       description: "Made in Creamy sauce, Chicken Tikka, Onion, Cheese",
       price: 749,
@@ -14,6 +15,7 @@ export default function PizzaCart() {
     },
     {
       id: 2,
+      discountTag: 35,
       name: "Mighty Mexicana",
       description:
         "Made in Tomato sauce, Shredded chicken, Onions, Capsicum, Cheese",
@@ -23,6 +25,7 @@ export default function PizzaCart() {
     },
     {
       id: 3,
+      discountTag: 35,
       name: "Cheese Burst",
       description:
         "Made in Tomato sauce, Mozzarella cheese, Cheese burst crust",
@@ -32,6 +35,7 @@ export default function PizzaCart() {
     },
     {
       id: 4,
+      discountTag: 35,
       name: "Burst",
       description: "Mozzarella cheese, Cheese burst crust",
       price: 649,
@@ -40,7 +44,26 @@ export default function PizzaCart() {
     },
     {
       id: 5,
+      discountTag: 30,
       name: "Cheese Burst",
+      description: "Made in Tomato sauce, Mozzarella cheese",
+      price: 599,
+      discountedPrice: 430,
+      image: PizzaImage,
+    },
+    {
+      id: 6,
+      discountTag: 30,
+      name: "Fajita Pizza",
+      description: "Made in Tomato sauce, Mozzarella cheese",
+      price: 599,
+      discountedPrice: 430,
+      image: PizzaImage,
+    },
+    {
+      id: 8,
+      discountTag: 30,
+      name: "Fajita Pizza",
       description: "Made in Tomato sauce, Mozzarella cheese",
       price: 599,
       discountedPrice: 430,
@@ -58,7 +81,7 @@ export default function PizzaCart() {
         </div>
       </nav>
       {/* main content */}
-      <main className="min-h-screen lg:pt-24 lg:px-22 md:pt-24 md:px-10 pt-24 px-6">
+      <main className="mt-24 min-h-screen lg:pt-8 lg:px-22 md:pt-24 md:px-10 px-6">
         <div className="relative flex items-center border border-gray-300 rounded-full w-full">
           <input
             type="search"
@@ -84,56 +107,57 @@ export default function PizzaCart() {
           </button>
         </div>
         <section>
-          <h1 className="p-12 text-center text-3xl font-serif mt-3 mb-[-19rem]">
+          <h1 className="p-12 text-center text-lg lg:text-3xl font-serif lg:mt-3 mb-[-19rem]">
             OVERLOAD MEATY PIZZA
           </h1>
           {/* pizza item cart selection */}
-          <div className="relative min-h-screen lg:px-22 lg:mb-56 md:pt-24 md:px-10">
-            <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-14 md:grid-cols-2 sm:grid-cols-2">
+          {/* mt-10 lg:px-10 md:px-5 */}
+          {/* mt-72 lg:px-22 lg:mt-2 lg:mb-56 md:pt-24 md:px-10 */}
+          <div className="relative min-h-screen pb-36 mt-72 lg:mt-2 lg:px-10 lg:pb-56 md:pt-24 md:px-10 ">
+            <div className="relative grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-14 md:grid-cols-2 sm:grid-cols-2">
               {pizzaItems.map((pizzaItem) => (
                 <article
                   key={pizzaItem.id}
-                  className="relative flex flex-col items-start lg:mt-40 md:mt-96"
+                  className="relative flex flex-col items-start mb-48 md:mb-44 md:mt-96 lg:mt-40 lg:mb-0"
                 >
                   <Image
                     src={pizzaItem.image}
                     alt="Pizza Image"
-                    className="z-30 mt-8"
-                    style={{ borderRadius: "40px" }}
+                    className="z-30 lg:mt-9 w-auto md:w-auto lg:w-auto mx-auto"
+                    style={{ borderRadius: "40px", maxWidth: "100%" }}
                     width={383}
                     height={100}
                   />
                   <span
                     style={{ transform: "skewX(-20deg)" }}
-                    className="absolute top-12 right-10 left-30 p-1 bg-yellow-400 z-40 text-black text-sm font-bold animate-pulse"
+                    className="absolute text-xs top-3 right-5 lg:top-12 lg:right-10 lg:left-30 p-1 bg-yellow-400 z-40 text-black lg:font-bold animate-pulse"
                   >
-                    35% OFF
+                    {pizzaItem.discountTag} OFF
                   </span>
-
-                  <div className="absolute bg-gray-100 text-white lg:px-6 lg:pt-14 lg:mt-[52vh] z-10 rounded-2xl w-full  md:mt-48 h-[38vh]">
-                    <div className="pb-7 pt-3">
-                      <h3 className="text-lg font-extrabold text-black">
+                  <div className="absolute bg-gray-100 text-white text-sm sm:pt-10 md:pt-20 mt-28 pt-10 pb-5 h-[1] md:h-[90vh]  md:mt-48 lg:mb-0 lg:px-6 lg:pt-12 lg:mt-[52vh] z-10 rounded-2xl lg:h-[36vh] w-full">
+                    <div className="px-2 pt-9 lg:pb-7 sm:mt-5 md:mt-54 lg:pt-0 h-16 lg:h-20">
+                      <h3 className="lg:text-lg font-bold lg:font-extrabold text-black">
                         {pizzaItem.name}
                       </h3>
-                      <p className="text-xs text-gray-500 h-8 pt-1">
+                      <p className="text-xs text-gray-500  pt-1">
                         {pizzaItem.description}
                       </p>
                     </div>
 
                     <div>
-                      <div className="flex">
-                        <p className="text-sm pr-1 font-extrabold text-black px-2">
+                      <div className="flex px:2 pt-7 mt-11 lg:px-0 lg:py-0 lg:mt-2  mx-auto">
+                        <p className="text-xs lg:text-sm pr-1 font-bold lg:font-extrabold text-black px-4 lg:px-2">
                           From
                         </p>
-                        <p className="text-sm pr-1 font-bold text-red-600">
+                        <p className="text-xs lg:text-sm pr-1 font-medium lg:font-bold text-red-600">
                           <del>Rs. {pizzaItem.price}</del>
                         </p>
-                        <p className="text-sm pr-1 font-bold text-green-700">
+                        <p className="text-xs lg:text-sm pr-1 font-medium lg:font-bold text-green-700">
                           Rs.{pizzaItem.discountedPrice}
                         </p>
                       </div>
-                      <button className="bg-red-600 mt-2 text-white p-2 rounded-md w-full">
-                        Add {pizzaItem.name} To Cart
+                      <button className="block mx-auto bg-red-600 text-sm mt-1 lg:mt-2 lg:text-xs text-white lg:p-2 rounded-md px-9 lg:w-full">
+                        Add to Cart
                       </button>
                     </div>
                   </div>
