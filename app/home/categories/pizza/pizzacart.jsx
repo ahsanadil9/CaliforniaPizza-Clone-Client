@@ -111,8 +111,7 @@ export default function PizzaCart() {
             OVERLOAD MEATY PIZZA
           </h1>
           {/* pizza item cart selection */}
-          {/* mt-10 lg:px-10 md:px-5 */}
-          {/* mt-72 lg:px-22 lg:mt-2 lg:mb-56 md:pt-24 md:px-10 */}
+
           <div className="relative min-h-screen pb-36 mt-72 lg:mt-2 lg:px-10 lg:pb-56 md:pt-24 md:px-10 ">
             <div className="relative grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-14 md:grid-cols-2 sm:grid-cols-2">
               {pizzaItems.map((pizzaItem) => (
