@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import PizzaImage from "public/assets/PizzaImage.webp";
+import PizzaImage from "public/assets/pizzaImage.webp";
 
 export default function PizzaCart() {
   const pizzaItems = [
@@ -99,9 +99,9 @@ export default function PizzaCart() {
               viewBox="0 0 20 20"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a.75.75 0 01-1.06 1.06l-4.817-4.817A6 6 0 012 8z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </button>
