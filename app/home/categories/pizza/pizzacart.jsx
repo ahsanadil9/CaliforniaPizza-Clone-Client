@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import PizzaImage from "app/assets/PizzaImage.webp";
+import PizzaImage from "public/assets/PizzaImage.webp";
 
 export default function PizzaCart() {
   const pizzaItems = [
