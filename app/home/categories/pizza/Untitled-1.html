@@ -1,0 +1,52 @@
+   <div className="relative min-h-screen pb-36 mt-72 lg:mt-2 lg:px-10 lg:pb-56 md:pt-24 md:px-10 ">
+            <div className="relative grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-14 md:grid-cols-2 sm:grid-cols-2">
+              {pizzaItems.map((pizzaItem) => (
+                <article
+                  key={pizzaItem.id}
+                  className="relative flex flex-col items-start mb-48 md:mb-44 md:mt-96 lg:mt-40 lg:mb-0"
+                >
+                  <Image
+                    src={pizzaItem.image}
+                    alt="Pizza Image"
+                    className="z-30 lg:mt-9 w-auto md:w-auto lg:w-auto mx-auto"
+                    style={{ borderRadius: "40px", maxWidth: "100%" }}
+                    width={383}
+                    height={100}
+                  />
+                  <span
+                    style={{ transform: "skewX(-20deg)" }}
+                    className="absolute text-xs top-3 right-5 lg:top-12 lg:right-10 lg:left-30 p-1 bg-yellow-400 z-2 text-black lg:font-bold animate-pulse"
+                  >
+                    {pizzaItem.discountTag} OFF
+                  </span>
+                  <div className="absolute bg-gray-100 text-white text-sm sm:pt-10 md:pt-20 mt-28 pt-10 pb-5 h-[1] md:h-[90vh]  md:mt-48 lg:mb-0 lg:px-6 lg:pt-12 lg:mt-[52vh] z-10 rounded-2xl lg:h-[36vh] w-full">
+                    <div className="px-2 pt-9 lg:pb-7 sm:mt-5 md:mt-54 lg:pt-0 h-16 lg:h-20">
+                      <h3 className="lg:text-lg font-bold lg:font-extrabold text-black">
+                        {pizzaItem.name}
+                      </h3>
+                      <p className="text-xs text-gray-500  pt-1">
+                        {pizzaItem.description}
+                      </p>
+                    </div>
+
+                    <div>
+                      <div className="flex px:2 pt-7 mt-11 lg:px-0 lg:py-0 lg:mt-2  mx-auto">
+                        <p className="text-xs lg:text-sm pr-1 font-bold lg:font-extrabold text-black px-4 lg:px-2">
+                          From
+                        </p>
+                        <p className="text-xs lg:text-sm pr-1 font-medium lg:font-bold text-red-600">
+                          <del>Rs. {pizzaItem.price}</del>
+                        </p>
+                        <p className="text-xs lg:text-sm pr-1 font-medium lg:font-bold text-green-700">
+                          Rs.{pizzaItem.discountedPrice}
+                        </p>
+                      </div>
+                      <button className="block mx-auto bg-red-600 text-sm mt-1 lg:mt-2 lg:text-xs text-white lg:p-2 rounded-md px-9 lg:w-full">
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
