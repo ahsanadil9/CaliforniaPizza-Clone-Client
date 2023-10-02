@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import PizzaImage from "public/assets/pizzaImage.webp";
+import "./pizzacart.css";
 
 export default function PizzaCart() {
   const pizzaItems = [
@@ -117,22 +118,22 @@ export default function PizzaCart() {
 
           {/* pizza item cart selection */}
           <div className="px-4 md:px-10 lg:px-16">
-            <div className="relative top-72 grid grid-cols-2 gap-4 md:gap-9 lg:grid-cols-3">
+            <div className="relative top-72 grid grid-cols-2 gap-3 md:gap-9 lg:grid-cols-3">
               {pizzaItems.map((pizzaItem) => (
-                <article key={pizzaItem.id} className="relative flex flex-col">
+                <article
+                  key={pizzaItem.id}
+                  className="relative flex flex-col item-start"
+                >
                   <Image
                     src={pizzaItem.image}
                     alt="Pizza Image"
-                    className="w-auto md:w-auto lg:w-auto z-30"
-                    // style={{ borderRadius: "40px", maxWidth: "100%" }}
+                    className="z-30"
                     style={{
-                      borderRadius: "20px", // Mobile border radius
+                      borderRadius: "40px",
                       maxWidth: "100%",
-                      "@media (min-width: 640px)": {
-                        borderRadius: "70px", // Desktop border radius
-                      },
                     }}
                   />
+
                   <span
                     style={{ transform: "skewX(-20deg)" }}
                     className="absolute text-xs top-3 right-5 lg:top-12 lg:right-10 lg:left-30 p-1 bg-yellow-400 z-2 text-black lg:font-bold animate-pulse"
@@ -140,10 +141,12 @@ export default function PizzaCart() {
                     {pizzaItem.discountTag} OFF
                   </span>
                   <div
-                    className="absolute z-10 bg-gray-100 text-xs w-full pt-2"
-                    style={{ top: "calc(90% + 0px)" }}
+                    className="item-background absolute bg-gray-100 text-xs md:text-base w-full md:w-full lg:w-full z-0 lg:px-2"
+                    style={{
+                      top: "calc(100% + -35px)",
+                    }}
                   >
-                    <div className="">
+                    <div className="mt-12 md:mt-12">
                       <h3 className="">{pizzaItem.name}</h3>
                       <p className="">{pizzaItem.description}</p>
                     </div>

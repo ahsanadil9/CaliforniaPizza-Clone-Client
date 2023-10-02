@@ -1,0 +1,8 @@
+/* Apply this CSS when the screen width is between 880px and 1023px */
+@media screen and (min-width: 880px) and (max-width: 1023px) {
+  .item-background {
+    width: 385px; 
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
