@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import PizzaImage from "public/assets/pizzaImage.webp";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./pizzacart.css";
 
 export default function PizzaCart() {
@@ -127,9 +128,8 @@ export default function PizzaCart() {
                   <Image
                     src={pizzaItem.image}
                     alt="Pizza Image"
-                    className="z-30"
+                    className="pizza-image-d pizza-image-m z-30"
                     style={{
-                      borderRadius: "40px",
                       maxWidth: "100%",
                     }}
                   />
@@ -141,27 +141,39 @@ export default function PizzaCart() {
                     {pizzaItem.discountTag} OFF
                   </span>
                   <div
-                    className="item-background absolute bg-gray-100 text-xs md:text-base w-full md:w-full lg:w-full z-0 lg:px-2"
+                    className="item-background absolute bg-gray-100 text-xs md:text-base w-full md:w-full lg:w-full z-0 pb-3 px-2 lg:px-2 rounded-b-2xl"
                     style={{
                       top: "calc(100% + -35px)",
                     }}
                   >
-                    <div className="mt-12 md:mt-12">
-                      <h3 className="">{pizzaItem.name}</h3>
-                      <p className="">{pizzaItem.description}</p>
+                    <div className="mt-12 md:mt-12 h-24 md:h-20 px-2  ">
+                      <h3 className="font-extrabold text-sm md:text-lg lg:text-lg">
+                        {pizzaItem.name}
+                      </h3>
+                      <p className="desc-pizza text-gray-500 mt-2">
+                        {pizzaItem.description}
+                      </p>
                     </div>
 
-                    <div className="">
-                      <div className="flex">
-                        <p className="">From</p>
-                        <p className="">
-                          <del>Rs. {pizzaItem.price}</del>
+                    <div className="main-pizza-price font-extrabold mt-3 md:mt-6 lg:mt-16">
+                      <div className="pizza-price flex ml-1 text-sm md:ml-3 md:text-lg">
+                        <p className="text-black pr-1">From</p>
+                        <p className="text-red-600 pr-1">
+                          <del className="inline-flex items-center ">
+                            Rs.<span className="">{pizzaItem.price}</span>
+                          </del>
                         </p>
-                        <p className="">Rs.{pizzaItem.discountedPrice}</p>
+                        <p className="text-green-700">
+                          Rs.{pizzaItem.discountedPrice}
+                        </p>
                       </div>
-                      <button className="block ml-auto mr-auto">
-                        Add to Cart
-                      </button>
+                      <div className="addcart flex justify-center ml-auto mr-auto text-white mx-auto bg-red-600 rounded-md mt-1 py-1">
+                        <div className="">
+                          {" "}
+                          <ShoppingCartIcon />
+                        </div>
+                        <button className="">Add to Cart</button>
+                      </div>
                     </div>
                   </div>
                 </article>

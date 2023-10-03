@@ -1,8 +1,60 @@
+.pizza-image-m {
+  border-radius: 0px;
+}
+
+.pizza-image-d {
+  border-radius: 40px;
+}
+.item-background {
+  background-color: rgb(242, 241, 239);
+}
+
+@media screen and (max-width: 1024px) {
+  .pizza-image-m {
+    border-radius: 30px; /* Change the border-radius for mobile screens within the specified range */
+  }
+}
+
 /* Apply this CSS when the screen width is between 880px and 1023px */
 @media screen and (min-width: 880px) and (max-width: 1023px) {
   .item-background {
-    width: 385px; 
+    width: 385px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 280px) and (max-width: 353px) {
+  .item-background{
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+  .pizza-price{
+    font-size: 10.5px;
+    margin-top: 5px;
+    height: fit-content;
+  }
+  .main-pizza-price{
+    margin-top: 1.4rem;
+  }
+  .desc-pizza{
+    font-size: 12px;
+  }
+  .addcart{
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 469px) {
+   .pizza-price{
+   margin-left: 7px;
+   font-size: 0.9rem;
+  }
+}
+@media screen and (min-width: 470px) and (max-width: 767px) {
+   .pizza-price{
+    margin-top: -22px;
+   margin-left: 9px;
+   font-size: 1rem;
   }
 }
