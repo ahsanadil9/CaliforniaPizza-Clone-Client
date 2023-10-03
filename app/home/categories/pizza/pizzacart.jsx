@@ -25,25 +25,25 @@ export default function PizzaCart() {
       discountedPrice: 347,
       image: PizzaImage,
     },
-    // {
-    //   id: 3,
-    //   discountTag: 35,
-    //   name: "Cheese Burst",
-    //   description:
-    //     "Made in Tomato sauce, Mozzarella cheese, Cheese burst crust",
-    //   price: 649,
-    //   discountedPrice: 500,
-    //   image: PizzaImage,
-    // },
-    // {
-    //   id: 4,
-    //   discountTag: 35,
-    //   name: "Burst",
-    //   description: "Mozzarella cheese, Cheese burst crust",
-    //   price: 649,
-    //   discountedPrice: 550,
-    //   image: PizzaImage,
-    // },
+    {
+      id: 3,
+      discountTag: 35,
+      name: "Cheese Burst",
+      description:
+        "Made in Tomato sauce, Mozzarella cheese, Cheese burst crust",
+      price: 649,
+      discountedPrice: 500,
+      image: PizzaImage,
+    },
+    {
+      id: 4,
+      discountTag: 35,
+      name: "Burst",
+      description: "Mozzarella cheese, Cheese burst crust",
+      price: 649,
+      discountedPrice: 550,
+      image: PizzaImage,
+    },
     // {
     //   id: 5,
     //   discountTag: 30,
@@ -118,17 +118,17 @@ export default function PizzaCart() {
           </h1>
 
           {/* pizza item cart selection */}
-          <div className="px-4 md:px-10 lg:px-16">
-            <div className="relative top-72 grid grid-cols-2 gap-3 md:gap-9 lg:grid-cols-3">
+          <div className="item-main-pizza px-4 lg:px-28 md:px-16 ">
+            <div className="item-main relative top-72 grid grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 pb-44 ">
               {pizzaItems.map((pizzaItem) => (
                 <article
                   key={pizzaItem.id}
-                  className="relative flex flex-col item-start"
+                  className="cont-pizza relative flex flex-col item-start mb-44  md:mb-40 lg:mb-44 "
                 >
                   <Image
                     src={pizzaItem.image}
                     alt="Pizza Image"
-                    className="pizza-image-d pizza-image-m z-30"
+                    className="relative pizza-image-d pizza-image-m z-10"
                     style={{
                       maxWidth: "100%",
                     }}
@@ -136,7 +136,7 @@ export default function PizzaCart() {
 
                   <span
                     style={{ transform: "skewX(-20deg)" }}
-                    className="absolute text-xs top-3 right-5 lg:top-12 lg:right-10 lg:left-30 p-1 bg-yellow-400 z-2 text-black lg:font-bold animate-pulse"
+                    className="discount-tag absolute z-10 text-xs md:text-base top-3 right-5 lg:top-4 lg:right-6 lg:left-30 p-1 bg-yellow-400 text-black font-bold md:font-bold lg:font-bold animate-pulse"
                   >
                     {pizzaItem.discountTag} OFF
                   </span>
@@ -146,17 +146,17 @@ export default function PizzaCart() {
                       top: "calc(100% + -35px)",
                     }}
                   >
-                    <div className="mt-12 md:mt-12 h-24 md:h-20 px-2  ">
-                      <h3 className="font-extrabold text-sm md:text-lg lg:text-lg">
+                    <div className="mt-12 md:mt-12 h-24 md:h-20 px-2 lg:px-3  ">
+                      <h3 className="font-extrabold text-sm md:text-lg lg:text-lg lg:pt-2">
                         {pizzaItem.name}
                       </h3>
-                      <p className="desc-pizza text-gray-500 mt-2">
+                      <p className="desc-pizza text-gray-500 mt-1 text-xs lg:text-sm lg:mt-1">
                         {pizzaItem.description}
                       </p>
                     </div>
 
-                    <div className="main-pizza-price font-extrabold mt-3 md:mt-6 lg:mt-16">
-                      <div className="pizza-price flex ml-1 text-sm md:ml-3 md:text-lg">
+                    <div className="main-pizza-price font-extrabold mt-5 md:mt-6 lg:mt-16 lg:px-3">
+                      <div className="pizza-price flex ml-1 text-sm md:ml-3 md:text-lg ">
                         <p className="text-black pr-1">From</p>
                         <p className="text-red-600 pr-1">
                           <del className="inline-flex items-center ">
@@ -167,7 +167,7 @@ export default function PizzaCart() {
                           Rs.{pizzaItem.discountedPrice}
                         </p>
                       </div>
-                      <div className="addcart flex justify-center ml-auto mr-auto text-white mx-auto bg-red-600 rounded-md mt-1 py-1">
+                      <div className="addcart flex justify-center text-white mx-auto bg-red-600 rounded-md py-1 lg:py-2">
                         <div className="">
                           {" "}
                           <ShoppingCartIcon />
