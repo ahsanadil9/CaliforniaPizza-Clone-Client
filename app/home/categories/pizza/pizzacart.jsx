@@ -157,7 +157,6 @@ export default function PizzaCart() {
                       </p>
                     </div>
 
-                    {/* main work to be done */}
                     <div className="main-pizza-price font-extrabold mt-5 md:mt-6 lg:mt-16 lg:px-3">
                       <div className="pizza-price flex ml-1 text-sm md:ml-3 md:text-lg ">
                         <p className="text-black pr-1">From</p>
