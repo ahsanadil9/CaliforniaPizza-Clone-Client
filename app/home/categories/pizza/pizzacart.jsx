@@ -8,7 +8,7 @@ export default function PizzaCart() {
   const pizzaItems = [
     {
       id: 1,
-      discountTag: 35,
+      discountTag: 45,
       name: "Arizona Cream",
       description: "Made in Creamy sauce, Chicken Tikka, Onion, Cheese",
       price: 749,
@@ -17,7 +17,7 @@ export default function PizzaCart() {
     },
     {
       id: 2,
-      discountTag: 35,
+      discountTag: 30,
       name: "Mighty Mexicana",
       description:
         "Made in Tomato sauce, Shredded chicken, Onions, Capsicum, Cheese",
@@ -27,7 +27,7 @@ export default function PizzaCart() {
     },
     {
       id: 3,
-      discountTag: 35,
+      discountTag: 25,
       name: "Cheese Burst",
       description:
         "Made in Tomato sauce, Mozzarella cheese, Cheese burst crust",
@@ -44,15 +44,15 @@ export default function PizzaCart() {
       discountedPrice: 550,
       image: PizzaImage,
     },
-    // {
-    //   id: 5,
-    //   discountTag: 30,
-    //   name: "Cheese Burst",
-    //   description: "Made in Tomato sauce, Mozzarella cheese",
-    //   price: 599,
-    //   discountedPrice: 430,
-    //   image: PizzaImage,
-    // },
+    {
+      id: 5,
+      discountTag: 30,
+      name: "Cheese Burst",
+      description: "Made in Tomato sauce, Mozzarella cheese",
+      price: 599,
+      discountedPrice: 430,
+      image: PizzaImage,
+    },
     // {
     //   id: 6,
     //   discountTag: 30,
