@@ -123,7 +123,7 @@ export default function PizzaCart() {
               {pizzaItems.map((pizzaItem) => (
                 <article
                   key={pizzaItem.id}
-                  className="cont-pizza relative flex flex-col item-start mt-2 mb-44  md:mb-40 lg:mb-44 "
+                  className="cont-pizza relative flex flex-col item-start mt-2 mb-48  md:mb-40 lg:mb-44 "
                 >
                   <Image
                     src={pizzaItem.image}
