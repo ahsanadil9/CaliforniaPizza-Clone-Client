@@ -1,37 +1,51 @@
+/* pizza image screen radius for mobile and desktop */
 .pizza-image-m {
   border-radius: 0px;
 }
-
 .pizza-image-d {
   border-radius: 40px;
 }
-.item-background {
-  background-color: rgb(242, 241, 239);
-}
-.pizza-price{
-  margin-top: -2rem;
-}
-
 @media screen and (max-width: 1024px) {
   .pizza-image-m {
-    border-radius: 30px; /* Change the border-radius for mobile screens within the specified range */
+    border-radius: 30px;
   }
 }
 
-/* Apply this CSS when the screen width is between 880px and 1023px */
-@media screen and (min-width: 880px) and (max-width: 1023px) {
+/* main div tag of item main pizza  */
+@media screen and (min-width: 510px) and (max-width: 766px) {
+  .item-main-pizza {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .item-main {
+    gap: 2rem;
+  }
+}
+
+/*div tag gray background color of the pizza items and pizza price */
+.item-background {
+  background-color: rgb(242, 241, 239);
+}
+@media screen and (min-width: 880px) and (min-width: 946) and (max-width: 948px) {
+  .item-background {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (min-width: 950px) and (max-width: 1023px) {
   .item-background {
     width: 385px;
     margin-left: auto;
     margin-right: auto;
   }
 }
-
-@media screen and (min-width: 320px) and (max-width: 352px) {
-.pizza-price{
-  margin-top: -1.6rem;
-  margin-left: 0.8rem;
-}
+@media screen and (min-width: 1436px) and (max-width: 4128px) {
+  .item-background {
+    width: 384px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media screen and (min-width: 280px) and (max-width: 360px) {
   .item-background {
@@ -42,7 +56,7 @@
     font-size: 10.5px;
     margin-top: 1rem;
   }
-  .cont-pizza{
+  .cont-pizza {
     margin-bottom: 13.5rem;
   }
   .main-pizza-price {
@@ -53,6 +67,17 @@
   }
   .addcart {
     width: 95%;
+  }
+}
+
+.pizza-price {
+  margin-top: -2rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 352px) {
+  .pizza-price {
+    margin-top: -1.6rem;
+    margin-left: 0.8rem;
   }
 }
 
@@ -95,40 +120,9 @@
     margin-bottom: 11rem;
   }
 }
-@media screen and (min-width: 510px) and (max-width: 766px) {
-  .item-main-pizza {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  .item-main{
-    gap: 2rem;
-  }
-}
-@media screen and (min-width: 880px) and (max-width: 914px) {
-  .discount-tag {
-    right: 40px;
-  }
-}
-@media screen and (min-width: 914px) and (max-width: 999px) {
-  .discount-tag {
-    right: 60px;
-  }
-}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .pizza-price {
     margin-top: -1rem;
   }
 }
-@media screen and (min-width: 1000px) and (max-width: 1022px) {
-  .discount-tag {
-    right: 80px;
-  }
-}
-@media screen and (min-width: 880px) and (min-width: 946) and (max-width: 948px) {
-  .item-background {
-    width: 350px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-

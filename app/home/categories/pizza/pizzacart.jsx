@@ -125,21 +125,23 @@ export default function PizzaCart() {
                   key={pizzaItem.id}
                   className="cont-pizza relative flex flex-col item-start mt-2 mb-48  md:mb-40 lg:mb-44 "
                 >
-                  <Image
-                    src={pizzaItem.image}
-                    alt="Pizza Image"
-                    className="relative pizza-image-d pizza-image-m z-10"
-                    style={{
-                      maxWidth: "100%",
-                    }}
-                  />
-
-                  <span
-                    style={{ transform: "skewX(-20deg)" }}
-                    className="discount-tag absolute z-10 text-xs md:text-base top-3 right-5 lg:top-4 lg:right-6 lg:left-30 p-1 bg-yellow-400 text-black font-bold md:font-bold lg:font-bold animate-pulse"
-                  >
-                    {pizzaItem.discountTag} OFF
-                  </span>
+                  <div className="relative">
+                    <Image
+                      src={pizzaItem.image}
+                      className="relative pizza-image-d pizza-image-m z-10"
+                      alt="Pizza Image"
+                      objectFit="cover"
+                      style={{
+                        maxWidth: "100%",
+                      }}
+                    />
+                    <span
+                      style={{ transform: "skewX(-20deg)" }}
+                      className="discount-tag absolute z-10 top-2 left-3 md:left-4 lg:top-3 lg:left-5 p-1 bg-yellow-400 text-black font-bold md:font-bold lg:font-bold animate-pulse text-xs md:text-base"
+                    >
+                      {pizzaItem.discountTag} OFF
+                    </span>
+                  </div>
                   <div
                     className="item-background absolute bg-gray-100 text-xs md:text-base w-full md:w-full lg:w-full z-0 pb-3 px-2 lg:px-2 rounded-b-2xl"
                     style={{
@@ -155,6 +157,7 @@ export default function PizzaCart() {
                       </p>
                     </div>
 
+                    {/* main work to be done */}
                     <div className="main-pizza-price font-extrabold mt-5 md:mt-6 lg:mt-16 lg:px-3">
                       <div className="pizza-price flex ml-1 text-sm md:ml-3 md:text-lg ">
                         <p className="text-black pr-1">From</p>
