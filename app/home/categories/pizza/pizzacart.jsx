@@ -1,10 +1,12 @@
-import React from "react";
+"use client";
+import { React, useState } from "react";
 import Image from "next/image";
 import PizzaImage from "public/assets/pizzaImage.webp";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./pizzacart.css";
 
 export default function PizzaCart() {
+  const [searchItem, setSearchItem] = useState("");
   const pizzaItems = [
     {
       id: 1,
@@ -38,7 +40,7 @@ export default function PizzaCart() {
     {
       id: 4,
       discountTag: 35,
-      name: "Burst",
+      name: "Burst Hot Pizza",
       description: "Mozzarella cheese, Cheese burst crust",
       price: 649,
       discountedPrice: 550,
@@ -47,31 +49,37 @@ export default function PizzaCart() {
     {
       id: 5,
       discountTag: 30,
-      name: "Cheese Burst",
+      name: "Vegetable Pizza",
       description: "Made in Tomato sauce, Mozzarella cheese",
       price: 599,
       discountedPrice: 430,
       image: PizzaImage,
     },
-    // {
-    //   id: 6,
-    //   discountTag: 30,
-    //   name: "Fajita Pizza",
-    //   description: "Made in Tomato sauce, Mozzarella cheese",
-    //   price: 599,
-    //   discountedPrice: 430,
-    //   image: PizzaImage,
-    // },
-    // {
-    //   id: 8,
-    //   discountTag: 30,
-    //   name: "Fajita Pizza",
-    //   description: "Made in Tomato sauce, Mozzarella cheese",
-    //   price: 599,
-    //   discountedPrice: 430,
-    //   image: PizzaImage,
-    // },
+    {
+      id: 6,
+      discountTag: 30,
+      name: "Spicy Cheesy Pizza",
+      description: "Made in Masala Mirch sauce with cheese",
+      price: 599,
+      discountedPrice: 430,
+      image: PizzaImage,
+    },
+    {
+      id: 8,
+      discountTag: 30,
+      name: "BBQ Tikka Pizza",
+      description: "Made in Hot Sauce with Cheese flavour",
+      price: 599,
+      discountedPrice: 430,
+      image: PizzaImage,
+    },
   ];
+
+  // to search your favourite pizza
+  const filteredItems = pizzaItems.filter((itemSearch) => {
+    const itemName = itemSearch.name.toLowerCase();
+    return itemName.startsWith(searchItem.toLowerCase());
+  });
 
   return (
     <div>
@@ -89,6 +97,7 @@ export default function PizzaCart() {
           <div className="relative flex items-center border border-gray-300 rounded-full w-full">
             <input
               type="search"
+              onChange={(e) => setSearchItem(e.target.value)}
               className="relative pl-12 border-none focus:ring-primary focus:ring-inset focus:outline-none bg-gray-200 px-2 py-2.5 rounded-full w-full"
               placeholder="Search Meaty Pizza"
             />
@@ -120,7 +129,7 @@ export default function PizzaCart() {
           {/* pizza item cart selection */}
           <div className="item-main-pizza px-4 lg:px-28 md:px-16 ">
             <div className="item-main relative top-72 grid grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 pb-44 ">
-              {pizzaItems.map((pizzaItem) => (
+              {filteredItems.map((pizzaItem) => (
                 <article
                   key={pizzaItem.id}
                   className="cont-pizza relative flex flex-col item-start mt-2 mb-48  md:mb-40 lg:mb-44 "
@@ -130,10 +139,10 @@ export default function PizzaCart() {
                       src={pizzaItem.image}
                       className="relative pizza-image-d pizza-image-m z-10"
                       alt="Pizza Image"
-                      objectFit="cover"
                       style={{
                         maxWidth: "100%",
                       }}
+                      priority
                     />
                     <span
                       style={{ transform: "skewX(-20deg)" }}
