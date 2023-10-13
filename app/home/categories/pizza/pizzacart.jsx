@@ -83,13 +83,7 @@ export default function PizzaCart() {
 
   return (
     <div>
-      {/* navbar */}
-      <nav className="fixed z-20 top-0 w-full bg-white border-b-2 shadow-black-500 shadow-sm">
-        <div className="flex items-center px-4 py-3">
-          <h1 className="text-red-500 font-bold">California</h1>
-          <h1 className="text-green-500">Pizza</h1>
-        </div>
-      </nav>
+     
       {/* main content */}
       <main className="min-h-screen mt-24 lg:px-22 ">
         <div className="px-6 md:px-8">
