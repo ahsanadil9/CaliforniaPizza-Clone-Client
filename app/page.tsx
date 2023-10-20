@@ -1,8 +1,10 @@
-import Home from './home/home';
+import { Navbar, ItemList } from '@/src/components'
+
 export default function Page() {
-  return (
-    <main>
-      <Home />
-    </main>
-  )
+return (
+    <>
+      <Navbar />
+      <ItemList />
+    </>
+  );
 }
