@@ -9,9 +9,10 @@ export default function Item({ item }) {
     >
       <div className="relative aspect-square rounded-3xl lg:rounded-3xl">
         <Image
+          fill
           src={item.image}
           alt="Pizza Image"
-          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="rounded-3xl"
         />
         <span
