@@ -7,12 +7,12 @@ export default function Item({ item }) {
       key={item.id}
       className="relative flex flex-col item-start bg-gray-100 rounded-t-3xl rounded-b-2xl max-w-sm h-full w-full"
     >
-      <div className="relative aspect-square rounded-3xl">
+      <div className="relative aspect-square rounded-3xl lg:rounded-3xl">
         <Image
           src={item.image}
           alt="Pizza Image"
           fill
-          className="rounded-2xl"
+          className="rounded-3xl"
         />
         <span
           style={{ transform: "skewX(-20deg)" }}
@@ -31,11 +31,11 @@ export default function Item({ item }) {
           </p>
         </div>
 
-        <div className="main-pizza-price font-extrabold">
-          <div className="pizza-price flex ml-1 text-xs md:text-lg mb-1">
+        <div className="font-extrabold">
+          <div className="flex flex-wrap ml-1 text-xs md:text-lg mb-1">
             <p className="text-black pr-1">From</p>
             <p className="text-red-600 pr-1">
-              <del className="inline-flex items-center ">
+              <del className="">
                 Rs.<span className="">{item.price}</span>
               </del>
             </p>
