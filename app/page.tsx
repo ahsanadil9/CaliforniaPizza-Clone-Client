@@ -1,10 +1,10 @@
-import { Navbar, ItemList, Slider } from '@/src/components'
+import { Navbar, CarouselBanner, ItemList } from '@/src/components'
 
 export default function Page() {
 return (
     <>
       <Navbar />
-      <Slider />
+      <CarouselBanner />
       <ItemList />
     </>
   );

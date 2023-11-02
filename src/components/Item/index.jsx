@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import CartIcon from "../../../public/assets/shopping-cart.png";
 
 export default function Item({ item }) {
   return (
@@ -42,10 +42,15 @@ export default function Item({ item }) {
             </p>
             <p className="text-green-700">Rs.{item.discountedPrice}</p>
           </div>
-          <div className="addcart flex justify-center text-white mx-auto bg-red-600 rounded-md py-1 lg:py-2">
-            <div className="">
-              {" "}
-              <ShoppingCartIcon />
+          <div className="addcart flex justify-center items-center text-white mx-auto bg-red-600 rounded-md py-1 lg:py-2">
+            <div className="relative h-4 w-4 mr-1 md:w-5 md:h-5 lg:w-6">
+              <Image
+                src={CartIcon}
+                alt="cart icon"
+                layout="fill"
+                sizes="(max-width: 768px) 100vw, 100vw"
+                className=""
+              />
             </div>
             <button className="">Add to Cart</button>
           </div>
