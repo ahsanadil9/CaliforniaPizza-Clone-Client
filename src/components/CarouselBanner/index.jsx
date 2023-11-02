@@ -11,7 +11,7 @@ class CarouselBanner extends Component {
       Banner: [
         {
           id: 1,
-          img: "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1682080604-Crazy-Deals-web.jpg&w=1920&q=75",
+          img: "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1685616864-Friendship-feast-web-banner.jpg&w=1920&q=75",
         },
         {
           id: 2,
@@ -19,7 +19,7 @@ class CarouselBanner extends Component {
         },
         {
           id: 3,
-          img: "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1685616864-Friendship-feast-web-banner.jpg&w=1920&q=75",
+          img: "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1682080604-Crazy-Deals-web.jpg&w=1920&q=75",
         },
         {
           id: 4,
