@@ -12,7 +12,9 @@ export default function ItemList() {
       description: "Made in Creamy sauce, Chicken Tikka, Onion, Cheese",
       price: 749,
       discountedPrice: 547,
-      image: "/assets/pizzaImage.webp",
+      // image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696497545-4-min.jpeg&w=384&q=75",
     },
     {
       id: 2,
@@ -22,7 +24,9 @@ export default function ItemList() {
         "Made in Tomato sauce, Shredded chicken, Onions, Capsicum, Cheese",
       price: 499,
       discountedPrice: 347,
-      image: "/assets/pizzaImage.webp",
+      //image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696519074-1696499917-1-min.jpeg&w=384&q=75",
     },
     {
       id: 3,
@@ -32,7 +36,9 @@ export default function ItemList() {
         "Made in Tomato sauce, Mozzarella cheese, Cheese burst crust",
       price: 649,
       discountedPrice: 500,
-      image: "/assets/pizzaImage.webp",
+      //image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1678281836-Mexican%20treat.jpg&w=384&q=75",
     },
     {
       id: 4,
@@ -41,16 +47,20 @@ export default function ItemList() {
       description: "Mozzarella cheese, Cheese burst crust",
       price: 649,
       discountedPrice: 550,
-      image: "/assets/pizzaImage.webp",
+      //image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1678280608-Detroit%20pepperoni%20lar.jpg&w=384&q=75",
     },
     {
       id: 5,
       discountTag: 30,
-      name: "Vegetable Pizza",
-      description: "Made in Tomato sauce, Mozzarella cheese",
+      name: "Double The Fun - Large Pizza",
+      description: "2 Large Pizza (Meat Fiesta Flavours), Mozzarella cheese",
       price: 599,
       discountedPrice: 430,
-      image: "/assets/pizzaImage.webp",
+      //image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1677844823-2%20large%20pizza-min.jpg&w=384&q=75",
     },
     {
       id: 6,
@@ -59,16 +69,20 @@ export default function ItemList() {
       description: "Made in Masala Mirch sauce with cheese",
       price: 599,
       discountedPrice: 430,
-      image: "/assets/pizzaImage.webp",
+      //image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1679519485-sdg.jpg&w=384&q=75",
     },
     {
-      id: 8,
+      id: 7,
       discountTag: 30,
       name: "BBQ Tikka Pizza",
       description: "Made in Hot Sauce with Cheese flavour",
       price: 599,
       discountedPrice: 430,
-      image: "/assets/pizzaImage.webp",
+      //image: "/assets/pizzaImage.webp",
+      image:
+        "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1677915253-Cheese%20And%20Pepporoni.jpg&w=384&q=75",
     },
   ];
 
