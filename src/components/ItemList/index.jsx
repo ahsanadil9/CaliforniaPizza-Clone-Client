@@ -93,11 +93,11 @@ export default function ItemList() {
   });
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center mb-36">
       <div className="max-w-5xl px-4">
         <Search setSearchItem={setSearchItem} />
         <section>
-          <h1 className="py-12 lg:p-12 text-base text-center md:text-lg lg:text-3xl font-serif lg:mt-3">
+          <h1 className="py-6 lg:p-12 text-base text-center md:text-lg lg:text-3xl font-serif lg:mt-3">
             OVERLOAD MEATY PIZZA
           </h1>
 

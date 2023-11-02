@@ -1,12 +1,12 @@
 export default function Search({ setSearchItem }) {
   return (
-    <div className="px-6 md:px-8 pt-16">
+    <div className="px-6 md:px-8 pt-8 pb-5">
       {/* {" "} */}
       <div className="relative flex items-center border border-gray-300 rounded-full w-full max-w-full">
         <input
           type="search"
           onChange={(e) => setSearchItem(e.target.value)}
-          className="relative pl-12 border-none focus:ring-primary focus:ring-inset focus:outline-none bg-gray-200 px-2 py-2.5 rounded-full w-full"
+          className="relative pl-12 text-sm lg:text-lg border-none focus:ring-primary focus:ring-inset focus:outline-none bg-gray-200 px-2 py-2.5 rounded-full w-full"
           placeholder="Search Meaty Pizza"
         />
         <button
