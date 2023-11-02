@@ -1,6 +1,6 @@
 export default function Search({ setSearchItem }) {
   return (
-    <div className="px-6 md:px-8 pt-8 pb-5">
+    <div className="px-6 md:px-8 pt-8 pb-5 lg:pt-12">
       {/* {" "} */}
       <div className="relative flex items-center border border-gray-300 rounded-full w-full max-w-full">
         <input
