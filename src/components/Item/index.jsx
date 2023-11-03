@@ -1,5 +1,4 @@
 import Image from "next/image";
-import CartIcon from "../../../public/assets/cart.png";
 
 export default function Item({ item }) {
   return (
@@ -42,17 +41,17 @@ export default function Item({ item }) {
             </p>
             <p className="text-green-700">Rs.{item.discountedPrice}</p>
           </div>
-          <div className="addcart flex justify-center items-center text-white mx-auto bg-red-600 rounded-md py-1 lg:py-2">
+          <div className="addcart flex justify-center items-center mx-auto bg-red-600 rounded-md py-1 lg:py-2">
             <div className="relative h-4 w-4 mr-1 md:w-5 md:h-5 lg:w-6">
               <Image
-                src={CartIcon}
+                src="/assets/cart.png"
                 alt="cart icon"
                 layout="fill"
                 sizes="(max-width: 768px) 100vw, 100vw"
                 className=""
               />
             </div>
-            <button className="">Add to Cart</button>
+            <button className="text-white">Add to Cart</button>
           </div>
         </div>
       </div>
