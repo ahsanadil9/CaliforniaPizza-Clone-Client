@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CartIcon from "../../../public/assets/shopping-cart.png";
+import CartIcon from "../../../public/assets/cart.png";
 
 export default function Item({ item }) {
   return (
