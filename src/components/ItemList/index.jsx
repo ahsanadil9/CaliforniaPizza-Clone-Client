@@ -97,7 +97,7 @@ export default function ItemList() {
       <div className="max-w-5xl px-4">
         <Search setSearchItem={setSearchItem} />
         <section>
-          <h1 className="py-6 lg:p-12 text-base text-center md:text-lg lg:text-3xl font-serif lg:mt-3">
+          <h1 className="py-6 font-serif text-base text-center md:text-2xl lg:p-12 lg:text-3xl lg:mt-3">
             OVERLOAD MEATY PIZZA
           </h1>
 
