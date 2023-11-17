@@ -1,7 +1,18 @@
-import Image from "next/image";
+"use client";
+import { React, useState } from "react";
+import Image from "next/legacy/image";
+// import Image from "next/image";
 import Link from "next/link";
+import { CartModal } from "..";
 
 export default function Navbar() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <nav className="relative w-full bg-white">
@@ -12,7 +23,13 @@ export default function Navbar() {
               <Image
                 src="/assets/california-logo.webp"
                 alt="California Pizza Logo"
-                fill
+                // // fill
+                width={10}
+                height={10}
+                // layout="fill"
+                // layout="responsive"
+                // objectFit="cover"
+                sizes="(max-width: 768px) 100vw, 100vw"
               />
             </div>
           </div>
@@ -33,21 +50,31 @@ export default function Navbar() {
           </div>
           {/* cart */}
           <div className=""></div>
-          <div className="lg:absolute z-50 top-1/2 right-4 fixed lg:top-3 lg:right-4 bg-white rounded-full w-9 h-9 p-1 shadow-md shadow-black lg:rounded-none lg:shadow-none lg:bg-transparent">
+          <div
+            onClick={openModal}
+            className="lg:absolute cursor-pointer z-50 top-1/2 right-4 fixed lg:top-3 lg:right-4 bg-white rounded-full w-9 h-9 p-1 shadow-md shadow-black lg:rounded-none lg:shadow-none lg:bg-transparent"
+          >
             <Image
               src="/assets/cart-red.png"
               alt="cart"
-              width={0}
-              height={0}
-              priority
+              width={10}
+              height={10}
+              // priority
+              // layout="responsive"
+              // layout="fill"
+              // fill
+              // objectFit=""
               sizes="(max-width: 768px) 100vw, 100vw"
-              className="h-6 ml-1 mt-[2px] w-5 lg:h-8 lg:w-7"
+              className="h-6 ml-1 mt-[2px] w-5 lg:h-8 lg:w-7 hover:bg-gray-100"
             />
           </div>
-
+          {/* another work */}
           <div></div>
         </div>
       </nav>
+      <div>
+        <CartModal isModalOpen={isModalOpen} closemodal={closeModal} />
+      </div>
     </>
   );
 }
