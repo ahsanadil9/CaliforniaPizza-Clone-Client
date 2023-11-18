@@ -16,6 +16,9 @@ export default function Navbar() {
   return (
     <>
       <nav className="relative w-full bg-white">
+        <div>
+          <CartModal isModalOpen={isModalOpen} closeModal={closeModal} />
+        </div>
         <div className="">
           {/* california logo */}
           <div className="flex items-center px-4 py-2 h-14 md:justify-center lg:justify-center lg:h-16">
@@ -65,16 +68,13 @@ export default function Navbar() {
               // fill
               // objectFit=""
               sizes="(max-width: 768px) 100vw, 100vw"
-              className="h-6 ml-1 mt-[2px] w-5 lg:h-8 lg:w-7 hover:bg-gray-100"
+              className="h-6 ml-1 mt-[2px] w-5 lg:h-8 lg:w-7 hover:rounded-lg lg:hover:rounded-md hover:bg-gray-50"
             />
           </div>
           {/* another work */}
           <div></div>
         </div>
       </nav>
-      <div>
-        <CartModal isModalOpen={isModalOpen} closemodal={closeModal} />
-      </div>
     </>
   );
 }

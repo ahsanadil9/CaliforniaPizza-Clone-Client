@@ -1,20 +1,28 @@
+"use client";
 import React from "react";
 import { CloseButton } from "../Customization";
+import { UseClickOutside } from "../Customization";
 
-export default function CartModal(props) {
-  const ismodalOpen = props.isModalOpen;
-  const closeModal = props.closemodal;
+export default function CartModal({ isModalOpen, closeModal }) {
+  const modalRef = UseClickOutside(closeModal);
+
   return (
     <>
       {/* <!-- Main modal --> */}
-      <div className="relative">
+      {/* <div
+        className={`${
+          ismodalOpen
+            ? "fixed bg-opacity-50 transition-all ease-in-out duration-700"
+            : "hidden"
+        } z-[100] relative flex justify-end top-0 bottom-0 `}
+      > */}
+      {isModalOpen && (
         <div
-          className={`${
-            ismodalOpen ? "fixed" : "hidden"
-          } z-50 relative p-4 w-full max-w-2xl max-h-full`}
+          ref={modalRef}
+          className="bg-opacity-50 transition-all ease-in-out duration-700 z-[100] relative flex justify-end top-0 bottom-0"
         >
           {/* <!-- Modal content --> */}
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <div className="absolute w-[22.5rem] h-[100vh] bg-white rounded-l-2xl shadow dark:bg-gray-700">
             {/* <!-- Modal header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -24,28 +32,9 @@ export default function CartModal(props) {
                 <CloseButton />
               </div>
             </div>
-            {/* <!-- Modal body --> */}
-            <div className="p-4 md:p-5 space-y-4">
-              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                With less
-              </p>
-              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                The European Union’s
-              </p>
-            </div>
-            {/* <!-- Modal footer --> */}
-            <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button
-                data-modal-hide="default-modal"
-                type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                I accept
-              </button>
-            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
