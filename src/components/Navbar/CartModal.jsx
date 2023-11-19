@@ -2,6 +2,7 @@
 import React from "react";
 import { CloseButton } from "../Customization";
 import { UseClickOutside } from "../Customization";
+import "./Navbar.css";
 
 export default function CartModal({ isModalOpen, closeModal }) {
   const modalRef = UseClickOutside(closeModal);
@@ -11,7 +12,7 @@ export default function CartModal({ isModalOpen, closeModal }) {
       {isModalOpen && (
         <div
           ref={modalRef}
-          className={`fixed flex justify-end top-0 w-full h-full z-[100] transition-all ease-in-out duration-700`}
+          className="fixed flex justify-end top-0 left-0 w-full h-full z-[100] cart-animation"
         >
           {/* Background Overlay */}
           <div
@@ -19,7 +20,7 @@ export default function CartModal({ isModalOpen, closeModal }) {
             onClick={closeModal}
           ></div>
           {/* <!-- Cart content --> */}
-          <div className="absolute w-[22.5rem] h-[100vh] bg-white rounded-l-2xl shadow dark:bg-gray-700">
+          <div className="cart-animation absolute w-[22.5rem] h-[100vh] bg-white rounded-l-2xl shadow dark:bg-gray-700">
             {/* <!-- Cart header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -29,7 +30,9 @@ export default function CartModal({ isModalOpen, closeModal }) {
                 <CloseButton />
               </div>
             </div>
-            <button class="ease-in duration-300 ...">Button A</button>
+            <button class="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300">
+              Save Changes
+            </button>
           </div>
         </div>
       )}
