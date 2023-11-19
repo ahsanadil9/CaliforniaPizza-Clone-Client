@@ -6,18 +6,18 @@ import Link from "next/link";
 import { CartModal } from "..";
 
 export default function Navbar() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const openCart = () => {
+    setIsCartOpen(!isCartOpen);
   };
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeCart = () => {
+    setIsCartOpen(false);
   };
   return (
     <>
       <nav className="relative w-full bg-white">
         <div>
-          <CartModal isModalOpen={isModalOpen} closeModal={closeModal} />
+          <CartModal isCartOpen={isCartOpen} closeCart={closeCart} />
         </div>
         <div className="">
           {/* california logo */}
@@ -54,7 +54,7 @@ export default function Navbar() {
           {/* cart */}
           <div className=""></div>
           <div
-            onClick={openModal}
+            onClick={openCart}
             className="lg:absolute cursor-pointer z-50 top-1/2 right-4 fixed lg:top-3 lg:right-4 bg-white rounded-full w-9 h-9 p-1 shadow-md shadow-black lg:rounded-none lg:shadow-none lg:bg-transparent"
           >
             <Image
