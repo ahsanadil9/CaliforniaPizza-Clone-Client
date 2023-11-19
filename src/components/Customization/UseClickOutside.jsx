@@ -7,6 +7,8 @@ export default function useClickOutside(callback) {
     const closeOnOutsideClick = (e) => {
       const isClickInsideModal = ref.current && ref.current.contains(e.target);
       const isScrollBarClick = e.target.scrollHeight > window.innerHeight;
+      // const backgroundOverLay =
+      //   e.target.classList.contains("background-overlay");
 
       if (!isClickInsideModal && !isScrollBarClick) {
         console.log("clicked...");

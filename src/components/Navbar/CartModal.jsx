@@ -8,22 +8,19 @@ export default function CartModal({ isModalOpen, closeModal }) {
 
   return (
     <>
-      {/* <!-- Main modal --> */}
-      {/* <div
-        className={`${
-          ismodalOpen
-            ? "fixed bg-opacity-50 transition-all ease-in-out duration-700"
-            : "hidden"
-        } z-[100] relative flex justify-end top-0 bottom-0 `}
-      > */}
       {isModalOpen && (
         <div
           ref={modalRef}
-          className="bg-opacity-50 transition-all ease-in-out duration-700 z-[100] relative flex justify-end top-0 bottom-0"
+          className={`fixed flex justify-end top-0 w-full h-full z-[100] transition-all ease-in-out duration-700`}
         >
-          {/* <!-- Modal content --> */}
+          {/* Background Overlay */}
+          <div
+            className="absolute w-full h-full bg-[rgba(0,0,0,0.4)]"
+            onClick={closeModal}
+          ></div>
+          {/* <!-- Cart content --> */}
           <div className="absolute w-[22.5rem] h-[100vh] bg-white rounded-l-2xl shadow dark:bg-gray-700">
-            {/* <!-- Modal header --> */}
+            {/* <!-- Cart header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 Your Cart
@@ -32,6 +29,7 @@ export default function CartModal({ isModalOpen, closeModal }) {
                 <CloseButton />
               </div>
             </div>
+            <button class="ease-in duration-300 ...">Button A</button>
           </div>
         </div>
       )}
