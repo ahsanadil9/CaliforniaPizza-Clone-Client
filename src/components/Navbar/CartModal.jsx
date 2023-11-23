@@ -36,6 +36,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
                 <CloseButton />
               </div>
             </div>
+            <div>this is my cart</div>
           </div>
         </div>
       )}
