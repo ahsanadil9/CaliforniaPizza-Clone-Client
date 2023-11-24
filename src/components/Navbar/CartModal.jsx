@@ -37,42 +37,93 @@ export default function CartModal({ isCartOpen, closeCart }) {
               </div>
             </div>
             {/* <!-- Cart Item Names with Price and description --> */}
-            <div className="Flash Deal Content with names and price p-4">
-              <div className="border-b">
-                <div className="Flash Deal and Price with add button flex justify-between">
-                  <div className="image and flash deal name flex space-x-3 items-center">
-                    <div className="Image">
-                      <Image
-                        src="https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696497545-4-min.jpeg&w=384&q=75"
-                        width={100}
-                        height={100}
-                        alt="banner image"
-                        className="w-12 h-12 rounded-lg"
-                        priority
-                      />
+            <div className="Flash Deal Content with names and price p-4 ">
+              <div className="flex-col justify-between h-80">
+                <div>
+                  <div className="border-b">
+                    <div className="Flash Deal and Price with add button flex justify-between">
+                      <div className="image and flash deal name flex space-x-3 items-center">
+                        <div className="Image">
+                          <Image
+                            src="https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696497545-4-min.jpeg&w=384&q=75"
+                            width={100}
+                            height={100}
+                            alt="banner image"
+                            className="w-12 h-12 rounded-lg"
+                            priority
+                          />
+                        </div>
+                        <div className="Flash Deal name font-semibold">
+                          Flash Deal 1
+                        </div>
+                      </div>
+                      <div className="Price and add button">
+                        <div className="Rs-899 font-light flex justify-end">
+                          Rs. 899
+                        </div>
+                        <div className="del and add button flex space-x-4 items-center m-1">
+                          <div>
+                            <Image
+                              src="https://img.icons8.com/material-outlined/24/minus.png"
+                              alt="minus"
+                              width={22}
+                              height={22}
+                              className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
+                            />
+                          </div>
+                          <div className="text-lg">1</div>
+                          <div>
+                            <div>
+                              <Image
+                                src="https://img.icons8.com/android/24/plus.png"
+                                alt="plus"
+                                width={22}
+                                height={22}
+                                className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="Flash Deal name font-semibold">
-                      Flash Deal 1
+                    <div className="items name and desc price mb-8 mt-4 text-sm font-light">
+                      <div className="">
+                        <div className="flex justify-between">
+                          <div className="name">+ Kabab Popper</div>
+                          <div className="price">Rs. 200</div>
+                        </div>
+                        <div className="flex justify-between">
+                          <div className="name">+ Arizona Cream</div>
+                          <div className="price">-</div>
+                        </div>
+                        <div className="flex justify-between">
+                          <div className="name">+ Coke</div>
+                          <div className="price">-</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="Price and add button">
-                    <div className="Rs-899 font-light">Rs. 899</div>
-                    <div className="del and add button">- 2 +</div>
+                  <div className="total of items mt-5">
+                    <div className="flex justify-between font-light">
+                      <div>Total</div>
+                      <div>Rs. 1099</div>
+                    </div>
+                    <div className="flex justify-between font-semibold">
+                      <div>Grand Total</div>
+                      <div>Rs. 1099</div>
+                    </div>
                   </div>
                 </div>
-                <div className="items name and desc price mb-8 mt-4 text-sm font-light">
-                  <div className="">
-                    <div className="flex justify-between">
-                      <div className="name">+ Kabab Popper</div>
-                      <div className="price">Rs. 200</div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="name">+ Arizona Cream</div>
-                      <div className="price">-</div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="name">+ Coke</div>
-                      <div className="price">-</div>
+                <div>
+                  <div className="relative cursor-pointer flex justify-center bg-red-700 py-4 rounded-md mt-60">
+                    <div className="text-white font-bold">Checkout</div>
+                    <div className="absolute flex right-0 mr-6">
+                      <Image
+                        src="https://img.icons8.com/ios-filled/50/000000/circled-right-2.png"
+                        alt="plus"
+                        width={22}
+                        height={22}
+                      />
                     </div>
                   </div>
                 </div>
