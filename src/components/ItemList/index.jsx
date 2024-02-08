@@ -102,12 +102,11 @@ export default function ItemList() {
           </h1>
 
           {/* pizza item cart selection */}
-          <div className="">
-            <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full">
-              {filteredItems.map((item) => (
-                <Item item={item} key={item.id} />
-              ))}
-            </div>
+
+          <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full">
+            {filteredItems.map((item) => (
+              <Item item={item} key={item.id} />
+            ))}
           </div>
         </section>
       </div>

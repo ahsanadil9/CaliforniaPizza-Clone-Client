@@ -1,11 +1,15 @@
 "use client";
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { CloseButton } from "../Customization";
 import "./Navbar.css";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "@/src/redux/slices/cartSlice";
 
 export default function CartModal({ isCartOpen, closeCart }) {
-  React.useEffect(() => {
+  const cartItem = useSelector(selectCartItems);
+
+  useEffect(() => {
     if (isCartOpen) {
       document.body.style.overflow = "hidden";
     } else {
@@ -17,6 +21,21 @@ export default function CartModal({ isCartOpen, closeCart }) {
       document.body.style.overflow = "unset";
     };
   }, [isCartOpen]);
+  const totalItems = cartItem.reduce(
+    (acc, curr) => acc + Number(curr.discountedPrice),
+    0
+  );
+  const grandTotal = totalItems;
+
+  const [counter, setCounter] = useState(0);
+
+  const handleDecrease = () => {
+    setCounter(counter - 1);
+  };
+
+  const handleIncrease = () => {
+    setCounter(counter + 1);
+  };
 
   return (
     <>
@@ -39,77 +58,81 @@ export default function CartModal({ isCartOpen, closeCart }) {
             {/* <!-- Cart Item Names with Price and description --> */}
             <div className="flex flex-col justify-between p-4 h-[92%] ">
               <div className="">
-                <div className="border-b">
-                  <div className="flex justify-between">
-                    <div className="flex space-x-3 items-center">
-                      <div className="">
-                        <Image
-                          src="https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696497545-4-min.jpeg&w=384&q=75"
-                          width={100}
-                          height={100}
-                          alt="banner image"
-                          className="w-12 h-12 rounded-lg"
-                          priority
-                        />
-                      </div>
-                      <div className="Flash Deal name font-semibold">
-                        Flash Deal 1
-                      </div>
-                    </div>
-                    <div className="Price and add button">
-                      <div className="Rs-899 font-light flex justify-end">
-                        Rs. 899
-                      </div>
-                      <div className="del and add button flex space-x-4 items-center m-1">
-                        <div>
+                {cartItem.map((item, index) => (
+                  <div className="border-b" key={index}>
+                    <div className="flex justify-between">
+                      <div className="flex space-x-3 items-center">
+                        <div className="">
                           <Image
-                            src="https://img.icons8.com/material-outlined/24/minus.png"
-                            alt="minus"
-                            width={22}
-                            height={22}
-                            className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
+                            src={item.image}
+                            width={100}
+                            height={100}
+                            alt="banner image"
+                            className="w-12 h-12 rounded-lg"
+                            priority
                           />
                         </div>
-                        <div className="text-lg">1</div>
-                        <div>
+                        <div className="Flash Deal name font-semibold">
+                          {item.name}
+                        </div>
+                      </div>
+                      <div className="Price and add button">
+                        <div className="Rs-899 font-light flex justify-end">
+                          Rs. {item.discountedPrice}
+                        </div>
+                        <div className="del and add button flex space-x-4 items-center m-1">
                           <div>
                             <Image
-                              src="https://img.icons8.com/android/24/plus.png"
-                              alt="plus"
+                              src="https://img.icons8.com/material-outlined/24/minus.png"
+                              alt="minus"
                               width={22}
                               height={22}
+                              onClick={handleDecrease}
                               className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
                             />
+                          </div>
+                          <div className="text-lg">{counter}</div>
+                          <div>
+                            <div>
+                              <Image
+                                src="https://img.icons8.com/android/24/plus.png"
+                                alt="plus"
+                                width={22}
+                                height={22}
+                                onClick={handleIncrease}
+                                className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="items name and desc price mb-8 mt-4 text-sm font-light">
-                    <div className="">
-                      <div className="flex justify-between">
-                        <div className="name">+ Kabab Popper</div>
-                        <div className="price">Rs. 200</div>
-                      </div>
-                      <div className="flex justify-between">
-                        <div className="name">+ Arizona Cream</div>
-                        <div className="price">-</div>
-                      </div>
-                      <div className="flex justify-between">
-                        <div className="name">+ Coke</div>
-                        <div className="price">-</div>
+                    <div className="items name and desc price mb-8 mt-4 text-sm font-light">
+                      <div className="">
+                        <div className="flex justify-between">
+                          <div className="name">+ Kabab Popper</div>
+                          <div className="price">Rs. 200</div>
+                        </div>
+                        <div className="flex justify-between">
+                          <div className="name">+ Arizona Cream</div>
+                          <div className="price">-</div>
+                        </div>
+                        <div className="flex justify-between">
+                          <div className="name">+ Coke</div>
+                          <div className="price">-</div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
                 <div className="total of items mt-5">
                   <div className="flex justify-between font-light">
                     <div>Total</div>
-                    <div>Rs. 1099</div>
+                    <div>Rs. {totalItems}</div>
                   </div>
                   <div className="flex justify-between font-semibold">
                     <div>Grand Total</div>
-                    <div>Rs. 1099</div>
+                    <div>Rs. {grandTotal}</div>
                   </div>
                 </div>
               </div>

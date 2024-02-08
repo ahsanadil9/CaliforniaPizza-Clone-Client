@@ -4,6 +4,8 @@ import Image from "next/legacy/image";
 // import Image from "next/image";
 import Link from "next/link";
 import { CartModal } from "..";
+import { useSelector } from "react-redux";
+import { selectCartItems } from "@/src/redux/slices/cartSlice";
 
 export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -13,6 +15,9 @@ export default function Navbar() {
   const closeCart = () => {
     setIsCartOpen(false);
   };
+  const cartItem = useSelector(selectCartItems);
+  const cartLength = cartItem.length;
+
   return (
     <>
       <nav className="relative w-full bg-white">
@@ -53,6 +58,9 @@ export default function Navbar() {
           </div>
           {/* cart */}
           <div className=""></div>
+          <span className="text-red-700 font-bold fixed lg:absolute flex top-[49.5%] pr-[0.9rem] right-0 z-[500] lg:top-0 lg:pt-2">
+            {cartLength}
+          </span>
           <div
             onClick={openCart}
             className="lg:absolute cursor-pointer z-50 top-1/2 right-4 fixed lg:top-3 lg:right-4 bg-white rounded-full w-9 h-9 p-1 shadow-md shadow-black lg:rounded-none lg:shadow-none lg:bg-transparent"
@@ -62,7 +70,7 @@ export default function Navbar() {
               alt="cart"
               width={10}
               height={10}
-              // priority
+              priority
               // layout="responsive"
               // layout="fill"
               // fill
@@ -71,8 +79,9 @@ export default function Navbar() {
               className="h-6 ml-1 mt-[2px] w-5 lg:h-8 lg:w-7 hover:rounded-lg lg:hover:rounded-md hover:bg-gray-50"
             />
           </div>
+
           {/* another work */}
-          <div></div>
+          <div> </div>
         </div>
       </nav>
     </>

@@ -1,6 +1,26 @@
+"use client";
+import { React, useState } from "react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, selectCartItems } from "@/src/redux/slices/cartSlice";
 
 export default function Item({ item }) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+    console.log("Cart Items []: ", item);
+  };
+
+  const [showItemAdded, setShowItemAdded] = useState(false);
+  const handleShowMessage = () => {
+    setShowItemAdded(true);
+    setTimeout(() => {
+      setShowItemAdded(false);
+    }, 2000);
+  };
+
   return (
     <article
       key={item.id}
@@ -51,10 +71,26 @@ export default function Item({ item }) {
                 className=""
               />
             </div>
-            <button className="text-white">Add to Cart</button>
+            <button
+              onClick={() => {
+                handleAddToCart(item);
+                handleShowMessage();
+              }}
+              className="text-white"
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
+      {showItemAdded && cartItems.length > 0 && (
+        <div
+          className="flex bottom-0 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+          role="alert"
+        >
+          <span className="font-medium">Items added into Cart</span>
+        </div>
+      )}
     </article>
   );
 }
