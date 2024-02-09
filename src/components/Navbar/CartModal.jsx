@@ -8,6 +8,7 @@ import {
   selectCartItems,
   increaseQuantity,
   decreaseQuantity,
+  deleteCartItem,
 } from "@/src/redux/slices/cartSlice";
 
 export default function CartModal({ isCartOpen, closeCart }) {
@@ -27,11 +28,14 @@ export default function CartModal({ isCartOpen, closeCart }) {
     };
   }, [isCartOpen]);
   // total of items
-  const totalItems = cartItem.reduce(
-    (acc, curr) => acc + Number(curr.discountedPrice),
-    0
-  );
-  const grandTotal = totalItems;
+  // const totalItems = cartItem.reduce(
+  //   (acc, curr) => acc + Number(curr.discountedPrice),
+  //   0
+  // );
+  // const grandTotal = totalItems;
+
+  const total = cartItem.map((item) => item.discountedPrice);
+  console.log(total);
 
   const idItem = cartItem.reduce((counterObj, item) => {
     counterObj[item.id] = item.quantity;
@@ -45,22 +49,18 @@ export default function CartModal({ isCartOpen, closeCart }) {
   console.log("all quantities item now: ", allItemQuantities);
 
   // Update the counter state for each item in the cart
-  const [counters, setCounter] = useState(0);
   const handleDecrease = (itemId) => {
-    console.log("Decreasing quantity for item with ID:", itemId);
-
     dispatch(decreaseQuantity(itemId));
   };
-  console.log("decrease", handleDecrease());
 
   const handleIncrease = (itemId) => {
-    console.log("Increasing quantity for item with ID:", itemId);
-
     dispatch(increaseQuantity(itemId));
   };
-  console.log("increase", handleIncrease());
-  console.log(increaseQuantity());
-  console.log(decreaseQuantity());
+
+  const handleDelete = (itemId) => {
+    dispatch(deleteCartItem(itemId));
+  };
+
   return (
     <>
       {isCartOpen && (
@@ -106,14 +106,25 @@ export default function CartModal({ isCartOpen, closeCart }) {
                         </div>
                         <div className="del and add button flex space-x-4 items-center m-1">
                           <div>
-                            <Image
-                              src="https://img.icons8.com/material-outlined/24/delete.png"
-                              alt="minus"
-                              width={22}
-                              height={22}
-                              onClick={() => handleDecrease(item.id)}
-                              className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
-                            />
+                            {item.quantity === 0 ? (
+                              <Image
+                                src="https://img.icons8.com/material-outlined/24/delete.png"
+                                alt="minus"
+                                width={22}
+                                height={22}
+                                onClick={() => handleDelete(item.id)}
+                                className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
+                              />
+                            ) : (
+                              <Image
+                                src="https://img.icons8.com/material-outlined/24/minus.png"
+                                alt="minus"
+                                width={22}
+                                height={22}
+                                onClick={() => handleDecrease(item.id)}
+                                className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
+                              />
+                            )}
                           </div>
                           {/* {allItemQuantities.map((item, index) => (
                             <div key={index} className="text-lg">
@@ -157,11 +168,11 @@ export default function CartModal({ isCartOpen, closeCart }) {
                 <div className="total of items mt-5">
                   <div className="flex justify-between font-light">
                     <div>Total</div>
-                    <div>Rs. {totalItems}</div>
+                    <div>Rs. {total}</div>
                   </div>
                   <div className="flex justify-between font-semibold">
                     <div>Grand Total</div>
-                    <div>Rs. {grandTotal}</div>
+                    <div>Rs. {total}</div>
                   </div>
                 </div>
               </div>
