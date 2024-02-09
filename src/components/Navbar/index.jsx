@@ -15,6 +15,7 @@ export default function Navbar() {
   const closeCart = () => {
     setIsCartOpen(false);
   };
+  // calc cart length on the cart icon
   const cartItem = useSelector(selectCartItems);
   const cartLength = cartItem.length;
 

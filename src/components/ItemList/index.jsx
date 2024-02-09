@@ -15,6 +15,7 @@ export default function ItemList() {
       // image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696497545-4-min.jpeg&w=384&q=75",
+      quantity: 1,
     },
     {
       id: 2,
@@ -27,6 +28,7 @@ export default function ItemList() {
       //image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696519074-1696499917-1-min.jpeg&w=384&q=75",
+      quantity: 1,
     },
     {
       id: 3,
@@ -39,6 +41,7 @@ export default function ItemList() {
       //image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1678281836-Mexican%20treat.jpg&w=384&q=75",
+      quantity: 1,
     },
     {
       id: 4,
@@ -50,6 +53,7 @@ export default function ItemList() {
       //image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1678280608-Detroit%20pepperoni%20lar.jpg&w=384&q=75",
+      quantity: 1,
     },
     {
       id: 5,
@@ -61,6 +65,7 @@ export default function ItemList() {
       //image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1677844823-2%20large%20pizza-min.jpg&w=384&q=75",
+      quantity: 1,
     },
     {
       id: 6,
@@ -72,6 +77,7 @@ export default function ItemList() {
       //image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1679519485-sdg.jpg&w=384&q=75",
+      quantity: 1,
     },
     {
       id: 7,
@@ -83,6 +89,7 @@ export default function ItemList() {
       //image: "/assets/pizzaImage.webp",
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1677915253-Cheese%20And%20Pepporoni.jpg&w=384&q=75",
+      quantity: 1,
     },
   ];
 

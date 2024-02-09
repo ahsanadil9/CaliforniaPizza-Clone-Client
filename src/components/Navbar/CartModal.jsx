@@ -3,11 +3,16 @@ import { React, useState, useEffect } from "react";
 import { CloseButton } from "../Customization";
 import "./Navbar.css";
 import Image from "next/image";
-import { useSelector } from "react-redux";
-import { selectCartItems } from "@/src/redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartItems,
+  increaseQuantity,
+  decreaseQuantity,
+} from "@/src/redux/slices/cartSlice";
 
 export default function CartModal({ isCartOpen, closeCart }) {
   const cartItem = useSelector(selectCartItems);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isCartOpen) {
@@ -21,22 +26,41 @@ export default function CartModal({ isCartOpen, closeCart }) {
       document.body.style.overflow = "unset";
     };
   }, [isCartOpen]);
+  // total of items
   const totalItems = cartItem.reduce(
     (acc, curr) => acc + Number(curr.discountedPrice),
     0
   );
   const grandTotal = totalItems;
 
-  const [counter, setCounter] = useState(0);
+  const idItem = cartItem.reduce((counterObj, item) => {
+    counterObj[item.id] = item.quantity;
+    return counterObj;
+  }, {});
+  const allItemQuantities = [];
+  for (const id in idItem) {
+    const addQuantity = idItem[id];
+    allItemQuantities.push(addQuantity);
+  }
+  console.log("all quantities item now: ", allItemQuantities);
 
-  const handleDecrease = () => {
-    setCounter(counter - 1);
+  // Update the counter state for each item in the cart
+  const [counters, setCounter] = useState(0);
+  const handleDecrease = (itemId) => {
+    console.log("Decreasing quantity for item with ID:", itemId);
+
+    dispatch(decreaseQuantity(itemId));
   };
+  console.log("decrease", handleDecrease());
 
-  const handleIncrease = () => {
-    setCounter(counter + 1);
+  const handleIncrease = (itemId) => {
+    console.log("Increasing quantity for item with ID:", itemId);
+
+    dispatch(increaseQuantity(itemId));
   };
-
+  console.log("increase", handleIncrease());
+  console.log(increaseQuantity());
+  console.log(decreaseQuantity());
   return (
     <>
       {isCartOpen && (
@@ -83,15 +107,20 @@ export default function CartModal({ isCartOpen, closeCart }) {
                         <div className="del and add button flex space-x-4 items-center m-1">
                           <div>
                             <Image
-                              src="https://img.icons8.com/material-outlined/24/minus.png"
+                              src="https://img.icons8.com/material-outlined/24/delete.png"
                               alt="minus"
                               width={22}
                               height={22}
-                              onClick={handleDecrease}
+                              onClick={() => handleDecrease(item.id)}
                               className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
                             />
                           </div>
-                          <div className="text-lg">{counter}</div>
+                          {/* {allItemQuantities.map((item, index) => (
+                            <div key={index} className="text-lg">
+                              {item}
+                            </div>
+                          ))} */}
+                          <div className="text-lg">{item.quantity}</div>
                           <div>
                             <div>
                               <Image
@@ -99,7 +128,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
                                 alt="plus"
                                 width={22}
                                 height={22}
-                                onClick={handleIncrease}
+                                onClick={() => handleIncrease(item.id)}
                                 className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
                               />
                             </div>
