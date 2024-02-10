@@ -1,8 +1,12 @@
 "use client";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectCartItems } from "@/src/redux/slices/cartSlice";
+import {
+  addToCart,
+  selectCartItems,
+  calculateTotalAmount,
+} from "@/src/redux/slices/cartSlice";
 
 export default function Item({ item }) {
   const dispatch = useDispatch();
@@ -10,6 +14,7 @@ export default function Item({ item }) {
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
+    dispatch(calculateTotalAmount());
     console.log("Cart Items []: ", item);
   };
 

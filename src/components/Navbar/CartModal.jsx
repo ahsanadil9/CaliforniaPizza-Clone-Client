@@ -10,15 +10,25 @@ import {
   decreaseQuantity,
   deleteCartItem,
   calculateTotalAmount,
-  totalPriceItems,
+  selectTotalAmountItems,
 } from "@/src/redux/slices/cartSlice";
 
 export default function CartModal({ isCartOpen, closeCart }) {
-  const cartItem = useSelector(selectCartItems);
-  const totalAmountItemss = useSelector(totalPriceItems);
   const dispatch = useDispatch();
-  console.log(totalAmountItemss);
-  console.log(calculateTotalAmount);
+  const cartItem = useSelector(selectCartItems);
+  const totalAmountItems = useSelector(selectTotalAmountItems);
+  const grandTotal = totalAmountItems;
+  console.log("Total Amount: ", totalAmountItems);
+
+  const idItem = cartItem.reduce((counterObj, item) => {
+    counterObj[item.id] = item.quantity;
+    return counterObj;
+  }, {});
+  const allItemQuantities = [];
+  for (const id in idItem) {
+    const addQuantity = idItem[id];
+    allItemQuantities.push(addQuantity);
+  }
 
   useEffect(() => {
     if (isCartOpen) {
@@ -32,27 +42,6 @@ export default function CartModal({ isCartOpen, closeCart }) {
       document.body.style.overflow = "unset";
     };
   }, [isCartOpen]);
-  // useEffect(() => {
-  //   dispatch(calculateTotalAmount());
-  // }, [dispatch]);
-  // total of items
-  // const totalItems = cartItem.reduce(
-  //   (acc, curr) => acc + Number(curr.discountedPrice),
-  //   0
-  // );
-  // const grandTotal = totalItems;
-
-  // const total = cartItem.map((item) => item.discountedPrice);
-
-  const idItem = cartItem.reduce((counterObj, item) => {
-    counterObj[item.id] = item.quantity;
-    return counterObj;
-  }, {});
-  const allItemQuantities = [];
-  for (const id in idItem) {
-    const addQuantity = idItem[id];
-    allItemQuantities.push(addQuantity);
-  }
 
   // Update the counter state for each item in the cart
   const handleDecrease = (itemId) => {
@@ -66,9 +55,6 @@ export default function CartModal({ isCartOpen, closeCart }) {
   const handleDelete = (itemId) => {
     dispatch(deleteCartItem(itemId));
   };
-  useEffect(() => {
-    dispatch(calculateTotalAmount());
-  }, []);
 
   return (
     <>
@@ -180,14 +166,11 @@ export default function CartModal({ isCartOpen, closeCart }) {
                   <div className="total of items mt-5">
                     <div className="flex justify-between font-light">
                       <div>Total</div>
-                      <div>
-                        Rs.
-                        {totalAmountItemss}
-                      </div>
+                      <div>Rs.{totalAmountItems}</div>
                     </div>
                     <div className="flex justify-between font-semibold">
                       <div>Grand Total</div>
-                      {/* <div>Rs. {dispatch(totalAmountItems)}</div> */}
+                      <div>Rs. {grandTotal}</div>
                     </div>
                   </div>
 
