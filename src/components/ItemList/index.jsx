@@ -1,7 +1,8 @@
 "use client";
 import { React, useState } from "react";
 import { Item, Search } from "..";
-
+import { useSelector } from "react-redux";
+import { selectCartItems } from "@/src/redux/slices/cartSlice";
 export default function ItemList() {
   const [searchItem, setSearchItem] = useState("");
   const pizzaItems = [
@@ -98,6 +99,14 @@ export default function ItemList() {
     const itemName = itemSearch.name.toLowerCase();
     return itemName.startsWith(searchItem.toLowerCase());
   });
+  const [showItemAdded, setShowItemAdded] = useState(true);
+  const handleShowMessage = () => {
+    setShowItemAdded(true);
+    setTimeout(() => {
+      setShowItemAdded(false);
+    }, 2000);
+  };
+  const cartItems = useSelector(selectCartItems);
 
   return (
     <main className="flex flex-col items-center mb-36">
@@ -115,6 +124,15 @@ export default function ItemList() {
               <Item item={item} key={item.id} />
             ))}
           </div>
+
+          {showItemAdded && cartItems.length > 0 && (
+            <div
+              className="flex absolute bottom-0 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+              role="alert"
+            >
+              <span className="font-medium">Items added into Cart</span>
+            </div>
+          )}
         </section>
       </div>
     </main>

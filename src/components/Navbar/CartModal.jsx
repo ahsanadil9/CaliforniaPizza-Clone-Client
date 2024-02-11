@@ -46,10 +46,12 @@ export default function CartModal({ isCartOpen, closeCart }) {
   // Update the counter state for each item in the cart
   const handleDecrease = (itemId) => {
     dispatch(decreaseQuantity(itemId));
+    dispatch(calculateTotalAmount());
   };
 
   const handleIncrease = (itemId) => {
     dispatch(increaseQuantity(itemId));
+    dispatch(calculateTotalAmount());
   };
 
   const handleDelete = (itemId) => {

@@ -12,36 +12,52 @@ const cartSlice = createSlice({
       const item = action.payload;
       const existingItem = state.cartItems.find((item) => item.id === id);
 
-      if (existingItem) {
-        existingItem.quantity += quantity;
-      } else {
+      if (!existingItem) {
         state.cartItems.push(item);
       }
     },
+
     increaseQuantity(state, action) {
       const itemId = action.payload;
       const item = state.cartItems.find((item) => item.id === itemId);
-      const { discountedPrice } = action.payload;
 
       if (item) {
+        if (!item.originalDiscountedPrice) {
+          item.originalDiscountedPrice = Number(item.discountedPrice);
+        }
+
         item.quantity += 1;
-        const counterPrice = Number(discountedPrice) * item.quantity;
-        item.discountedPrice = `${counterPrice}`;
+
+        const updatedDiscountedPrice =
+          item.originalDiscountedPrice * item.quantity;
+        item.discountedPrice = `${updatedDiscountedPrice}`;
       }
     },
+
     decreaseQuantity(state, action) {
       const itemId = action.payload;
       const item = state.cartItems.find((item) => item.id === itemId);
       if (item && item.quantity > 0) {
+        if (!item.originalDiscountedPrice) {
+          item.originalDiscountedPrice = Number(item.discountedPrice);
+        }
+
         item.quantity -= 1;
+        item.discountedPrice =
+          item.discountedPrice - item.originalDiscountedPrice;
       }
     },
     deleteCartItem(state, action) {
       const itemId = action.payload;
-      const updatedCartItems = state.cartItems.filter(
-        (item) => item.id !== itemId
+      const userConfirmed = window.confirm(
+        "Are you sure you want to delete this item?"
       );
-      return { ...state, cartItems: updatedCartItems };
+      if (userConfirmed) {
+        const updatedCartItems = state.cartItems.filter(
+          (item) => item.id !== itemId
+        );
+        return { ...state, cartItems: updatedCartItems };
+      }
     },
     calculateTotalAmount(state, action) {
       const totalAmount = state.cartItems.reduce(
