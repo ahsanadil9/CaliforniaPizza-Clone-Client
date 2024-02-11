@@ -12,6 +12,7 @@ import {
 export default function Item({ item, cartMessage }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
+  const [showItemAdded, setShowItemAdded] = useState(false);
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
@@ -20,7 +21,6 @@ export default function Item({ item, cartMessage }) {
     console.log("Cart Items []: ", item);
   };
 
-  const [showItemAdded, setShowItemAdded] = useState(true);
   const handleShowMessage = () => {
     setShowItemAdded(true);
     setTimeout(() => {
@@ -82,7 +82,7 @@ export default function Item({ item, cartMessage }) {
               <button
                 onClick={() => {
                   handleAddToCart(item);
-                  handleShowMessage(cartMessage);
+                  handleShowMessage();
                 }}
                 className="text-white"
               >
@@ -93,14 +93,32 @@ export default function Item({ item, cartMessage }) {
         </div>
       </article>
       <>
-        {showItemAdded && cartItems.length > 0 && (
-          <div
-            className="flex absolute z-[500] top-0 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
-            role="alert"
-          >
-            <span className="font-medium">Items added into Cart</span>
-          </div>
-        )}
+        {/* {cartItems.some((cartItem) => cartItem.id === item.id) ? ( */}
+        {
+          showItemAdded && cartItems.length > 0 && (
+            <div
+              style={{
+                position: "fixed",
+                bottom: 0,
+                width: "20%",
+                zIndex: 1000,
+              }}
+              className="flex justify-center items-center p-3 mb-4 text-lg text-green-800 rounded-lg bg-green-300 dark:bg-gray-800 dark:text-green-400"
+            >
+              <Image
+                width="30"
+                height="30"
+                src="https://img.icons8.com/color/48/verified-account--v1.png"
+                alt="verified-account--v1"
+              />
+
+              <span className="font-medium">Item add to Cart</span>
+            </div>
+          )
+          // ) : (
+          //   <span className="font-medium">Items added to Cart</span>
+          // )
+        }
       </>
     </>
   );
