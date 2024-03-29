@@ -1,7 +1,6 @@
 "use client";
 import { React, useState, useEffect } from "react";
 import { CloseButton } from "../Customization";
-import "./Navbar.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import {

@@ -30,7 +30,7 @@ export default function Navbar() {
           <div className="flex items-center px-4 py-2 h-14 md:justify-center lg:justify-center lg:h-16">
             <div className="relative z-10 w-16 aspect-square  md:w-20 lg:bg-white lg:rounded-full lg:mb-[-3.5rem] lg:w-24 lg:border-b-2">
               <Image
-                src="/assets/california-logo.webp"
+                src="/public/assets/california-logo.webp"
                 alt="California Pizza Logo"
                 // // fill
                 width={10}
