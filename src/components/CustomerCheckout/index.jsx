@@ -42,7 +42,7 @@ export default function CustomerCheckout() {
 
                         <form className="flex flex-col w-full">
                             <div className="flex mt-4">
-                                <div className="w-1/5 mr-0">
+                                <div className="w-1/5 mr-2">
                                     <label className="text-sm font-medium mb-1 block" htmlFor="title">
                                         Title
                                     </label>
