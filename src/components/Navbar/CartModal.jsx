@@ -12,6 +12,7 @@ import {
   calculateTotalAmount,
   selectTotalAmountItems,
 } from "@/src/redux/slices/cartSlice";
+import { useRouter } from "next/navigation";
 
 export default function CartModal({ isCartOpen, closeCart }) {
   const dispatch = useDispatch();
@@ -28,6 +29,11 @@ export default function CartModal({ isCartOpen, closeCart }) {
   for (const id in idItem) {
     const addQuantity = idItem[id];
     allItemQuantities.push(addQuantity);
+  }
+
+  const router = useRouter()
+  const handleClick = ( ) => {
+    router.push('customercheckout')
   }
 
   useEffect(() => {
@@ -176,7 +182,9 @@ export default function CartModal({ isCartOpen, closeCart }) {
                     </div>
                   </div>
 
-                  <div className="relative cursor-pointer flex justify-center items-center bg-red-700 h-12 rounded-md flex-grow-1">
+                  <div className="relative cursor-pointer flex justify-center items-center bg-red-700 h-12 rounded-md flex-grow-1"
+                   onClick={handleClick}
+                   >
                     <div className="text-white font-bold">Checkout</div>
                     <div className="absolute flex right-0 mr-6">
                       <Image
