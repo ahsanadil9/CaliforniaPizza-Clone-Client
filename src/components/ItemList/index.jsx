@@ -100,23 +100,37 @@ export default function ItemList() {
     return itemName.startsWith(searchItem.toLowerCase());
   });
 
+  const categories = [{
+    name: "deserts",
+    description: "ice cream",
+    items: filteredItems
+  },
+{
+  name: "fastfood",
+  description: "spicy pizza",
+  items: filteredItems
+}]
+
   return (
     <main className="flex flex-col items-center mb-36">
       <div className="max-w-5xl px-4">
         <Search setSearchItem={setSearchItem} />
-        <section>
-          <h1 className="py-6 font-serif text-base text-center md:text-2xl lg:p-12 lg:text-3xl lg:mt-3">
-            OVERLOAD MEATY PIZZA
-          </h1>
+        {categories.map(category => (
+          <section>
+            <h1 className="py-6 font-serif text-base text-center md:text-2xl lg:p-12 lg:text-3xl lg:mt-3">
+            {category.name}
+            </h1>
 
-          {/* pizza item cart selection */}
+            {/* pizza item cart selection */}
 
-          <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full">
-            {filteredItems.map((item) => (
-              <Item item={item} key={item.id} />
-            ))}
-          </div>
-        </section>
+            <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full">
+              {category.items.map((item) => (
+                <Item item={item} key={item.id} />
+              ))}
+            </div>
+          </section>
+        ))}
+
       </div>
     </main>
   );
