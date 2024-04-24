@@ -1,5 +1,6 @@
 import { handleRequest } from "./handleRequests";
 import { createOrders, getCategories, getOrders, getItems } from "./apis";
+import axios from "axios";
 
 // Orders
 export const getOrdersData = async () => {
@@ -15,6 +16,7 @@ export const createOrdersData = async () => {
 // Items
 export const getItemsData = async () => {
   const request = () => axios.get(getItems);
+
   return handleRequest(request);
 };
 

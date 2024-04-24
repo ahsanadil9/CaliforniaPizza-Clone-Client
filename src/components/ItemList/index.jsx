@@ -1,10 +1,18 @@
 "use client";
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Item, Search } from "..";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "@/src/redux/slices/cartSlice";
+import { fetchItems } from "@/src/redux/actions/items/itemsAction";
+
 export default function ItemList() {
+  const dispatch = useDispatch();
   const [searchItem, setSearchItem] = useState("");
+  const items = useSelector((state) => state.items);
+  const itemsArray = Object.values(items)
+    .flat()
+    .filter((item) => item && typeof item === "object");
+
   const pizzaItems = [
     {
       id: 1,
@@ -94,7 +102,11 @@ export default function ItemList() {
     },
   ];
 
-  // to search your favourite pizza
+  useEffect(() => {
+    dispatch(fetchItems());
+  }, []);
+
+  // search your favourite pizza
   const filteredItems = pizzaItems.filter((itemSearch) => {
     const itemName = itemSearch.name.toLowerCase();
     return itemName.startsWith(searchItem.toLowerCase());
@@ -117,21 +129,20 @@ export default function ItemList() {
     <main className="flex flex-col items-center mb-36">
       <div className="max-w-5xl px-4">
         <Search setSearchItem={setSearchItem} />
-        {categories.map((category) => (
+        {/* {categories.map((category) => (
           <section key={category.id}>
             <h1 className="py-6 font-serif text-base text-center md:text-2xl lg:p-12 lg:text-3xl lg:mt-3">
               {category.name}
-            </h1>
+            </h1> */}
 
-            {/* pizza item cart selection */}
-
-            <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full">
-              {category.items.map((item) => (
-                <Item item={item} key={item.id} />
-              ))}
-            </div>
-          </section>
-        ))}
+        {/* pizza item cart selection */}
+        <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full mt-7">
+          {itemsArray.map((item, index) => (
+            <Item item={item} key={item._id} />
+          ))}
+        </div>
+        {/* </section>
+        ))} */}
       </div>
     </main>
   );
