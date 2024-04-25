@@ -1,4 +1,5 @@
 "use client";
+import { createCustomerData } from "@/src/routes/apiRequests";
 import Image from "next/image";
 import { useState } from "react";
 // import { Navbar } from "..";
@@ -8,6 +9,29 @@ export default function CustomerCheckout() {
 
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
+  };
+
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    emailAddress: "",
+    phoneNo: "",
+    deliveryAddress: "",
+    city: "",
+    postalCode: "",
+  });
+  const [customerId, setCustomerId] = useState("");
+  console.log("cust id: ", customerId);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await createCustomerData(customerInfo);
+      const customerID = response.data._id;
+      setCustomerId(customerID);
+      // // Now that we have the customer ID, we can place the order
+      // placeOrder();
+    } catch (error) {
+      console.error("Error submitting customer info:", error);
+    }
   };
   return (
     <>
@@ -66,8 +90,12 @@ export default function CustomerCheckout() {
                   </label>
                   <input
                     type="text"
-                    id="fullName"
-                    name="fullName"
+                    id="name"
+                    name="name"
+                    value={customerInfo.name}
+                    onChange={(e) =>
+                      setCustomerInfo({ ...customerInfo, name: e.target.value })
+                    }
                     placeholder="Enter your full name"
                     className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
                   />
@@ -78,29 +106,43 @@ export default function CustomerCheckout() {
                 <div className="w-full mr-2">
                   <label
                     className="text-sm font-medium mb-1 block"
-                    htmlFor="mobileNumber"
+                    htmlFor="emailAddress"
                   >
-                    Mobile Number
+                    Email Address
                   </label>
                   <input
                     type="tel"
-                    id="mobileNumber"
-                    name="mobileNumber"
-                    placeholder="03xx-xxxxxxx"
+                    id="emailAddress"
+                    name="emailAddress"
+                    value={customerInfo.emailAddress}
+                    onChange={(e) =>
+                      setCustomerInfo({
+                        ...customerInfo,
+                        emailAddress: e.target.value,
+                      })
+                    }
+                    placeholder="ahsanadil@gmail.com"
                     className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
                   />
                 </div>
                 <div className="w-full">
                   <label
                     className="text-sm font-medium mb-1 block"
-                    htmlFor="alternateMobileNumber"
+                    htmlFor="MobileNumber"
                   >
-                    Alternate Mobile Number (Optional)
+                    Mobile Number
                   </label>
                   <input
                     type="tel"
-                    id="alternateMobileNumber"
-                    name="alternateMobileNumber"
+                    id="phoneNo"
+                    name="phoneNo"
+                    value={customerInfo.phoneNo}
+                    onChange={(e) =>
+                      setCustomerInfo({
+                        ...customerInfo,
+                        phoneNo: e.target.value,
+                      })
+                    }
                     placeholder="03xx-xxxxxxx"
                     className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
                   />
@@ -118,6 +160,13 @@ export default function CustomerCheckout() {
                 type="tel"
                 id="deliveryAddress"
                 name="deliveryAddress"
+                value={customerInfo.deliveryAddress}
+                onChange={(e) =>
+                  setCustomerInfo({
+                    ...customerInfo,
+                    deliveryAddress: e.target.value,
+                  })
+                }
                 placeholder="Enter your complete address"
                 className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
               />
@@ -125,16 +174,23 @@ export default function CustomerCheckout() {
               <div className="mt-4">
                 <label
                   className="text-sm font-medium mb-1 block"
-                  htmlFor="nearestLandmark"
+                  htmlFor="city"
                 >
-                  Nearest Landmark
+                  City
                 </label>
               </div>
               <input
                 type="tel"
-                id="nearestLandmark"
-                name="nearestLandmark"
-                placeholder="Any famouse place nearby"
+                id="city"
+                name="city"
+                value={customerInfo.city}
+                onChange={(e) =>
+                  setCustomerInfo({
+                    ...customerInfo,
+                    city: e.target.value,
+                  })
+                }
+                placeholder="Karachi, Pakistan"
                 className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
               />
 
@@ -143,14 +199,21 @@ export default function CustomerCheckout() {
                   className="text-sm font-medium mb-1 block"
                   htmlFor="deliveryInstructions"
                 >
-                  Delivery Instructions
+                  Postal Code
                 </label>
               </div>
               <input
                 type="tel"
-                id="deliveryInstructions"
-                name="deliveryInstructions"
-                placeholder="Delivery Instructions"
+                id="postalCode"
+                name="postalCode"
+                value={customerInfo.postalCode}
+                onChange={(e) =>
+                  setCustomerInfo({
+                    ...customerInfo,
+                    postalCode: e.target.value,
+                  })
+                }
+                placeholder="75330"
                 className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
               />
             </form>
@@ -158,19 +221,23 @@ export default function CustomerCheckout() {
               <h2 class="text-lg font-medium mb-2">Payment Information</h2>
 
               <div class="flex items-center">
-                <img
+                <Image
                   class="h-5 mr-2"
                   src="https://www.californiapizza.com.pk/_next/image?url=%2Fassets%2Fimg%2FCash.png&w=128&q=75"
                   alt="Cash logo"
                   onClick={() => handleMethodSelect("cash")}
                   style={{ width: "7%", height: "7%" }}
+                  width={100}
+                  height={100}
                 />
-                <img
+                <Image
                   class="h-5 mr-2"
                   src="https://www.californiapizza.com.pk/_next/image?url=%2Fassets%2Fimg%2FCard.png&w=128&q=75"
                   alt="OnlinePayment logo"
                   onClick={() => handleMethodSelect("online")}
                   style={{ width: "17%", height: "17%" }}
+                  width={100}
+                  height={100}
                 />
               </div>
 
@@ -261,7 +328,10 @@ export default function CustomerCheckout() {
                 Note: Your order will be delivered within 45 to 60 minutes.
               </div>
 
-              <button class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full">
+              <button
+                onClick={handleSubmit}
+                class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full"
+              >
                 Place Order
               </button>
 

@@ -11,3 +11,6 @@ export const getItems = `${BASE_URI}/item`;
 
 // 2. Categories
 export const getCategories = `${BASE_URI}/categories`;
+
+// 3/ Customers
+export const createCustomer = `${BASE_URI}/orders/customer`;
