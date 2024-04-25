@@ -1,14 +1,18 @@
 "use client";
-import { createCustomerData } from "@/src/routes/apiRequests";
+import { createCustomerData, createOrdersData } from "@/src/routes/apiRequests";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../Navbar/cartContext";
+import Loader from "../Customization/Loader";
+import { ResponseMessage } from "../Customization";
 
 export default function CustomerCheckout() {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
   };
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const { orderData } = useContext(OrderContext);
   console.log("order Data customer checkout: ", orderData);
@@ -23,18 +27,55 @@ export default function CustomerCheckout() {
   });
   const [customerId, setCustomerId] = useState("");
   console.log("cust id: ", customerId);
+  const fetchOrder = {
+    items: orderData.items,
+    customer: customerId,
+  };
+  console.log("fetch order: ", fetchOrder);
+
+  const placeOrder = async () => {
+    setLoading(true);
+
+    try {
+      const response = await createOrdersData(fetchOrder);
+      console.log("response place order: ", response);
+    } catch (error) {
+      console.error("Error submitting order info:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+
     try {
       const response = await createCustomerData(customerInfo);
       const customerID = response.data._id;
       setCustomerId(customerID);
       // // Now that we have the customer ID, we can place the order
-      // placeOrder();
+      placeOrder();
+      setTimeout(() => {
+        setSuccessMessage("Order placed successfully");
+      }, 1500);
     } catch (error) {
       console.error("Error submitting customer info:", error);
+    } finally {
+      setLoading(false);
     }
+  };
+  const isCustomerDetailsIncomplete = () => {
+    const { name, emailAddress, phoneNo, deliveryAddress, city, postalCode } =
+      customerInfo;
+    return (
+      !name ||
+      !emailAddress ||
+      !phoneNo ||
+      !deliveryAddress ||
+      !city ||
+      !postalCode
+    );
   };
   return (
     <>
@@ -316,7 +357,7 @@ export default function CustomerCheckout() {
                 <div class="font-bold">Rs. 5149</div>
               </div>
 
-              <div class="flex items-center mb-4">
+              {/* <div class="flex items-center mb-4">
                 <input
                   type="text"
                   placeholder="Enter Voucher / Promo Code"
@@ -325,7 +366,7 @@ export default function CustomerCheckout() {
                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
                   Apply
                 </button>
-              </div>
+              </div> */}
 
               <div class="text-gray-600 mb-4">
                 Note: Your order will be delivered within 45 to 60 minutes.
@@ -346,7 +387,14 @@ export default function CustomerCheckout() {
             </div>
           </div>
         </div>
-
+        {loading && <Loader />}
+        {successMessage && <ResponseMessage message={successMessage} />}
+        {/* Display message if order information is not available */}
+        {(!orderData || isCustomerDetailsIncomplete()) && !loading && (
+          <div className="text-center mt-4">
+            {<ResponseMessage message="Please enter your details" />}
+          </div>
+        )}
         {/* Payment Information Section - Add this section later */}
       </div>
     </>

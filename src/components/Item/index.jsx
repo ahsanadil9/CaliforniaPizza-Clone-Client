@@ -8,6 +8,7 @@ import {
   calculateTotalAmount,
   increaseQuantity,
 } from "@/src/redux/slices/cartSlice";
+import ResponseMessage from "../Customization/responseMessage";
 
 export default function Item({ item, cartMessage }) {
   const dispatch = useDispatch();
@@ -113,24 +114,7 @@ export default function Item({ item, cartMessage }) {
       </article>
       <>
         {showItemAdded && cartItems.length > 0 && (
-          <div
-            style={{
-              position: "fixed",
-              bottom: 0,
-              width: "20%",
-              zIndex: 1000,
-            }}
-            className="flex justify-center items-center p-3 mb-4 text-lg text-green-800 rounded-lg bg-green-300 dark:bg-gray-800 dark:text-green-400"
-          >
-            <Image
-              width="30"
-              height="30"
-              src="https://img.icons8.com/color/48/verified-account--v1.png"
-              alt="verified-account--v1"
-            />
-
-            <span className="font-medium">Item add to Cart</span>
-          </div>
+          <ResponseMessage message="Item added to Cart" />
         )}
       </>
     </>
