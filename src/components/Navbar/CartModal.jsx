@@ -1,5 +1,5 @@
 "use client";
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import { CloseButton } from "../Customization";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,13 +12,15 @@ import {
   selectTotalAmountItems,
 } from "@/src/redux/slices/cartSlice";
 import { useRouter } from "next/navigation";
+import { CartProvider, OrderContext, OrderProvider } from "./cartContext";
+import CustomerCheckout from "../CustomerCheckout";
 
 export default function CartModal({ isCartOpen, closeCart }) {
   const dispatch = useDispatch();
   const cartItem = useSelector(selectCartItems);
   const totalAmountItems = useSelector(selectTotalAmountItems);
   const grandTotal = totalAmountItems;
-
+  const { orderData, setOrderData } = useContext(OrderContext);
   const router = useRouter();
   const handleClick = () => {
     router.push("customercheckout");
@@ -30,8 +32,6 @@ export default function CartModal({ isCartOpen, closeCart }) {
     } else {
       document.body.style.overflow = "unset";
     }
-
-    // Clean up the effect
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -50,6 +50,14 @@ export default function CartModal({ isCartOpen, closeCart }) {
   const handleDelete = (itemId) => {
     dispatch(deleteCartItem(itemId));
   };
+
+  useEffect(() => {
+    const updatedOrderData = cartItem.map((item) => ({
+      itemId: item._id,
+      quantity: item.quantity,
+    }));
+    setOrderData({ items: updatedOrderData });
+  }, [cartItem]);
 
   return (
     <>
@@ -73,7 +81,22 @@ export default function CartModal({ isCartOpen, closeCart }) {
             <div className="flex flex-col justify-between p-4 h-[92%]  ">
               <div className="">
                 {cartItem.map((item, index) => (
-                  <div className="border-b mt-2" key={item._id}>
+                  <div
+                    className="border-b mt-2"
+                    key={item._id}
+                    // value={orderData.item[index].itemId}
+                    // onChange={(e) =>
+                    //   // Update the corresponding itemId in orderData
+                    //   setOrderData({
+                    //     ...orderData,
+                    //     item: orderData.item.map((orderItem, i) =>
+                    //       i === index
+                    //         ? { ...orderItem, itemId: item._id }
+                    //         : orderItem
+                    //     ),
+                    //   })
+                    // }
+                  >
                     <div className="flex justify-between">
                       <div className="flex space-x-3 items-center">
                         <div className="">
@@ -133,6 +156,8 @@ export default function CartModal({ isCartOpen, closeCart }) {
                         </div>
                       </div>
                     </div>
+                    {/* {updateOrderData(item._id, item.quantity)} */}
+
                     <div className="items name and desc price mb-8 mt-4 text-sm font-light">
                       <div className="">
                         <div className="flex justify-between">

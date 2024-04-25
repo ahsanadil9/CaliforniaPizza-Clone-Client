@@ -31,7 +31,6 @@ export default function Item({ item, cartMessage }) {
   const [orderData, setOrderData] = useState({
     items: [],
   });
-  console.log("order data", orderData);
 
   return (
     <>

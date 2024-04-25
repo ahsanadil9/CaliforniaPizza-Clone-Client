@@ -1,15 +1,17 @@
 "use client";
 import { createCustomerData } from "@/src/routes/apiRequests";
 import Image from "next/image";
-import { useState } from "react";
-// import { Navbar } from "..";
+import { useContext, useEffect, useState } from "react";
+import { OrderContext } from "../Navbar/cartContext";
 
 export default function CustomerCheckout() {
   const [selectedMethod, setSelectedMethod] = useState(null);
-
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
   };
+
+  const { orderData } = useContext(OrderContext);
+  console.log("order Data customer checkout: ", orderData);
 
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
@@ -21,6 +23,7 @@ export default function CustomerCheckout() {
   });
   const [customerId, setCustomerId] = useState("");
   console.log("cust id: ", customerId);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
