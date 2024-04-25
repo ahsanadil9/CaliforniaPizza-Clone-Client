@@ -8,43 +8,32 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart(state, action) {
-      const { id, quantity } = action.payload;
-      const item = action.payload;
-      const existingItem = state.cartItems.find((item) => item.id === id);
+      const newItem = action.payload;
+      const existingItemIndex = state.cartItems.findIndex(
+        (item) => item._id === newItem._id
+      );
 
-      if (!existingItem) {
-        state.cartItems.push(item);
+      if (existingItemIndex !== -1) {
+        state.cartItems[existingItemIndex].quantity++;
+      } else {
+        newItem.quantity = 1;
+        state.cartItems.push(newItem);
       }
     },
 
     increaseQuantity(state, action) {
       const itemId = action.payload;
-      const item = state.cartItems.find((item) => item.id === itemId);
-
+      const item = state.cartItems.find((item) => item._id === itemId);
       if (item) {
-        if (!item.originalDiscountedPrice) {
-          item.originalDiscountedPrice = Number(item.discountedPrice);
-        }
-
         item.quantity += 1;
-
-        const updatedDiscountedPrice =
-          item.originalDiscountedPrice * item.quantity;
-        item.discountedPrice = `${updatedDiscountedPrice}`;
       }
     },
 
     decreaseQuantity(state, action) {
       const itemId = action.payload;
-      const item = state.cartItems.find((item) => item.id === itemId);
+      const item = state.cartItems.find((item) => item._id === itemId);
       if (item && item.quantity > 0) {
-        if (!item.originalDiscountedPrice) {
-          item.originalDiscountedPrice = Number(item.discountedPrice);
-        }
-
         item.quantity -= 1;
-        item.discountedPrice =
-          item.discountedPrice - item.originalDiscountedPrice;
       }
     },
     deleteCartItem(state, action) {
@@ -54,17 +43,21 @@ const cartSlice = createSlice({
       );
       if (userConfirmed) {
         const updatedCartItems = state.cartItems.filter(
-          (item) => item.id !== itemId
+          (item) => item._id !== itemId
         );
         return { ...state, cartItems: updatedCartItems };
       }
     },
     calculateTotalAmount(state, action) {
-      const totalAmount = state.cartItems.reduce(
-        (acc, curr) => acc + Number(curr.discountedPrice),
-        0
-      );
-      return { ...state, totalAmountItems: totalAmount }; // Update totalAmountItems, not cartItems
+      const totalAmount = state.cartItems.reduce((acc, curr) => {
+        if (!isNaN(curr.price) && !isNaN(curr.quantity)) {
+          return acc + curr.price * curr.quantity;
+        } else {
+          return acc;
+        }
+      }, 0);
+
+      return { ...state, totalAmountItems: totalAmount };
     },
   },
 });

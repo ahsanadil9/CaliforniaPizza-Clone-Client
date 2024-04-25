@@ -28,6 +28,11 @@ export default function Item({ item, cartMessage }) {
     }, 2000);
   };
 
+  const [orderData, setOrderData] = useState({
+    items: [],
+  });
+  console.log("order data", orderData);
+
   return (
     <>
       <article

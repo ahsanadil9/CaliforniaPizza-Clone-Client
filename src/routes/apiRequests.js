@@ -14,8 +14,8 @@ export const getOrdersData = async () => {
   return handleRequest(request);
 };
 
-export const createOrdersData = async () => {
-  const request = () => axios.post(createOrders);
+export const createOrdersData = async (orderData) => {
+  const request = () => axios.post(createOrders, orderData);
   return handleRequest(request);
 };
 

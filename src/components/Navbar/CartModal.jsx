@@ -18,22 +18,11 @@ export default function CartModal({ isCartOpen, closeCart }) {
   const cartItem = useSelector(selectCartItems);
   const totalAmountItems = useSelector(selectTotalAmountItems);
   const grandTotal = totalAmountItems;
-  console.log("Total Amount: ", totalAmountItems);
 
-  const idItem = cartItem.reduce((counterObj, item) => {
-    counterObj[item.id] = item.quantity;
-    return counterObj;
-  }, {});
-  const allItemQuantities = [];
-  for (const id in idItem) {
-    const addQuantity = idItem[id];
-    allItemQuantities.push(addQuantity);
-  }
-
-  const router = useRouter()
-  const handleClick = ( ) => {
-    router.push('customercheckout')
-  }
+  const router = useRouter();
+  const handleClick = () => {
+    router.push("customercheckout");
+  };
 
   useEffect(() => {
     if (isCartOpen) {
@@ -48,7 +37,6 @@ export default function CartModal({ isCartOpen, closeCart }) {
     };
   }, [isCartOpen]);
 
-  // Update the counter state for each item in the cart
   const handleDecrease = (itemId) => {
     dispatch(decreaseQuantity(itemId));
     dispatch(calculateTotalAmount());
@@ -85,12 +73,12 @@ export default function CartModal({ isCartOpen, closeCart }) {
             <div className="flex flex-col justify-between p-4 h-[92%]  ">
               <div className="">
                 {cartItem.map((item, index) => (
-                  <div className="border-b mt-2" key={index}>
+                  <div className="border-b mt-2" key={item._id}>
                     <div className="flex justify-between">
                       <div className="flex space-x-3 items-center">
                         <div className="">
                           <Image
-                            src={item.image}
+                            src={item.imageUrl}
                             width={100}
                             height={100}
                             alt="banner image"
@@ -104,7 +92,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
                       </div>
                       <div className="Price and add button">
                         <div className="Rs-899 font-light flex justify-end">
-                          Rs. {item.discountedPrice}
+                          Rs. {item.price}
                         </div>
                         <div className="del and add button flex space-x-4 items-center m-1">
                           <div>
@@ -114,7 +102,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
                                 alt="delete"
                                 width={24}
                                 height={24}
-                                onClick={() => handleDelete(item.id)}
+                                onClick={() => handleDelete(item._id)}
                                 className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
                               />
                             ) : (
@@ -123,7 +111,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
                                 alt="minus"
                                 width={24}
                                 height={24}
-                                onClick={() => handleDecrease(item.id)}
+                                onClick={() => handleDecrease(item._id)}
                                 className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
                               />
                             )}
@@ -137,7 +125,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
                                 alt="plus"
                                 width={24}
                                 height={24}
-                                onClick={() => handleIncrease(item.id)}
+                                onClick={() => handleIncrease(item._id)}
                                 className="rounded-full bg-gray-100 p-[6px] cursor-pointer hover:bg-red-600 hover:text-white"
                               />
                             </div>
@@ -181,9 +169,10 @@ export default function CartModal({ isCartOpen, closeCart }) {
                     </div>
                   </div>
 
-                  <div className="relative cursor-pointer flex justify-center items-center bg-red-700 h-12 rounded-md flex-grow-1"
-                   onClick={handleClick}
-                   >
+                  <div
+                    className="relative cursor-pointer flex justify-center items-center bg-red-700 h-12 rounded-md flex-grow-1"
+                    onClick={handleClick}
+                  >
                     <div className="text-white font-bold">Checkout</div>
                     <div className="absolute flex right-0 mr-6">
                       <Image
