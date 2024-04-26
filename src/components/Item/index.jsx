@@ -1,5 +1,5 @@
 "use client";
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,7 +10,7 @@ import {
 } from "@/src/redux/slices/cartSlice";
 import ResponseMessage from "../Customization/responseMessage";
 
-export default function Item({ item, cartMessage }) {
+export default function Item({ item }) {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const [showItemAdded, setShowItemAdded] = useState(false);
@@ -19,7 +19,6 @@ export default function Item({ item, cartMessage }) {
     dispatch(addToCart(item));
     dispatch(increaseQuantity());
     dispatch(calculateTotalAmount());
-    console.log("Cart Items []: ", item);
   };
 
   const handleShowMessage = () => {
@@ -28,10 +27,6 @@ export default function Item({ item, cartMessage }) {
       setShowItemAdded(false);
     }, 2000);
   };
-
-  const [orderData, setOrderData] = useState({
-    items: [],
-  });
 
   return (
     <>
@@ -89,8 +84,14 @@ export default function Item({ item, cartMessage }) {
               </p>
               <p className="text-green-700">Rs.{item.price}</p>
             </div>
-            <div className="addcart flex justify-center items-center mx-auto bg-red-600 rounded-md py-1 lg:py-2">
-              <div className="relative h-4 w-4 mr-1 md:w-5 md:h-5 lg:w-6">
+            <div
+              className="addcart cursor-pointer flex justify-center items-center mx-auto bg-red-600 rounded-md py-1 lg:py-2"
+              onClick={() => {
+                handleAddToCart(item);
+                handleShowMessage();
+              }}
+            >
+              <div className="relative  h-4 w-4 mr-1 md:w-5 md:h-5 lg:w-6">
                 <Image
                   src="/assets/cart.png"
                   alt="cart icon"
@@ -99,15 +100,7 @@ export default function Item({ item, cartMessage }) {
                   className=""
                 />
               </div>
-              <button
-                onClick={() => {
-                  handleAddToCart(item);
-                  handleShowMessage();
-                }}
-                className="text-white"
-              >
-                Add to Cart
-              </button>
+              <button className="text-white">Add to Cart</button>
             </div>
           </div>
         </div>

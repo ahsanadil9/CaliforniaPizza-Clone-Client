@@ -2,8 +2,8 @@
 import { React, useEffect, useState } from "react";
 import { Item, Search } from "..";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "@/src/redux/slices/cartSlice";
 import { fetchItems } from "@/src/redux/actions/items/itemsAction";
+import { Loader } from "../Customization";
 
 export default function ItemList() {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ export default function ItemList() {
   const itemsArray = Object.values(items)
     .flat()
     .filter((item) => item && typeof item === "object");
+  const [loading, setLoading] = useState(true);
 
   const pizzaItems = [
     {
@@ -104,6 +105,7 @@ export default function ItemList() {
 
   useEffect(() => {
     dispatch(fetchItems());
+    setLoading(false);
   }, []);
 
   // search your favourite pizza
@@ -136,11 +138,18 @@ export default function ItemList() {
             </h1> */}
 
         {/* pizza item cart selection */}
-        <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full mt-7">
-          {itemsArray.map((item, index) => (
-            <Item item={item} key={item._id} />
-          ))}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          itemsArray.length > 0 && (
+            <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full mt-7">
+              {itemsArray.map((item, index) => (
+                <Item item={item} key={item._id} />
+              ))}
+            </div>
+          )
+        )}
+
         {/* </section>
         ))} */}
       </div>

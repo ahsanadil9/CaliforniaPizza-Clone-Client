@@ -22,7 +22,6 @@ export default function CustomerCheckout() {
   const [successMessage, setSuccessMessage] = useState(null);
 
   const { orderData } = useContext(OrderContext);
-  console.log("order Data customer checkout: ", orderData);
   const router = useRouter();
 
   const [customerInfo, setCustomerInfo] = useState({
@@ -92,10 +91,8 @@ export default function CustomerCheckout() {
     });
 
     disptach(clearCart());
-
-    router.refresh();
-
-    // reset order data here
+    // window.location.reload();
+    // router.refresh();
     orderData.items = [];
     setSuccessMessage("Order cleared successfully!");
     setShowItemAdded(true);
@@ -103,8 +100,12 @@ export default function CustomerCheckout() {
       setShowItemAdded(false);
       setSuccessMessage(null);
     }, 3000);
-    router.push("/");
-    // window.location.reload();
+  };
+  const handleClearOrderAndRedirect = () => {
+    clearOrder();
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
   };
 
   return (
@@ -185,7 +186,7 @@ export default function CustomerCheckout() {
                     Email Address
                   </label>
                   <input
-                    type="tel"
+                    type="text"
                     id="emailAddress"
                     name="emailAddress"
                     value={customerInfo.emailAddress}
@@ -231,7 +232,7 @@ export default function CustomerCheckout() {
                 </label>
               </div>
               <input
-                type="tel"
+                type="text"
                 id="deliveryAddress"
                 name="deliveryAddress"
                 value={customerInfo.deliveryAddress}
@@ -254,7 +255,7 @@ export default function CustomerCheckout() {
                 </label>
               </div>
               <input
-                type="tel"
+                type="text"
                 id="city"
                 name="city"
                 value={customerInfo.city}
@@ -338,7 +339,11 @@ export default function CustomerCheckout() {
               <div class="flex flex-col md:flex-row justify-between">
                 <div class="text-xl font-bold mb-4 md:mb-0">Your Order</div>
                 <div class="flex items-center">
-                  <a href="#" class="text-red-500" onClick={clearOrder}>
+                  <a
+                    href="#"
+                    class="text-red-500"
+                    onClick={handleClearOrderAndRedirect}
+                  >
                     Clear Order
                   </a>
                 </div>
