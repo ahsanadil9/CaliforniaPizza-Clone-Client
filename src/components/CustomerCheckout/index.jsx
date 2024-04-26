@@ -1,19 +1,26 @@
 "use client";
 import { createCustomerData, createOrdersData } from "@/src/routes/apiRequests";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { OrderContext } from "../Navbar/cartContext";
 import Loader from "../Customization/Loader";
 import { ResponseMessage } from "../Customization";
 import { useRouter } from "next/navigation";
-import { clearCart } from "@/src/redux/slices/cartSlice";
-import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
+import {
+  clearCart,
+  selectCartItems,
+  selectTotalAmountItems,
+} from "@/src/redux/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CustomerCheckout() {
   const disptach = useDispatch();
-  // const router_history = useHistory();
-
+  const cartItem = useSelector(selectCartItems);
+  const totalAmountItems = useSelector(selectTotalAmountItems);
+  const grandTotal = totalAmountItems;
+  console.log("");
+  console.log("");
+  console.log("");
   const [selectedMethod, setSelectedMethod] = useState(null);
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
@@ -130,7 +137,7 @@ export default function CustomerCheckout() {
       <div className="container mx-auto px-4 py-8 mt-9">
         <div className="flex flex-col md:flex-row justify-between gap-3">
           {/* Order Summary Section */}
-          <div className="w-full md:w-1/2 bg-gray-100 rounded-lg p-4 mb-4 md:mr-4">
+          <div className="w-full md:w-1/2 bg-gray-100 rounded-lg p-4 md:mr-4">
             <div className="flex gap-1">
               <p>This is a</p>
               <h2 className="font-bold">DELIVERY ORDER</h2>
@@ -335,7 +342,7 @@ export default function CustomerCheckout() {
 
           {/* Order Details Section */}
           <div className=" md:w-1/2 bg-gray-100 rounded-lg p-4">
-            <div class=" px-4 py-8">
+            <div class=" px-4 py-8 flex flex-col h-full justify-between">
               <div class="flex flex-col md:flex-row justify-between">
                 <div class="text-xl font-bold mb-4 md:mb-0">Your Order</div>
                 <div class="flex items-center">
@@ -349,80 +356,79 @@ export default function CustomerCheckout() {
                 </div>
               </div>
 
-              <div class="border-b border-gray-200 mb-4 pb-4">
-                <div class="flex justify-between mb-2">
-                  <div>1x Sehr o Iftar Feast Deal</div>
+              <div>
+                <div class="border-b border-gray-200 mb-4 pb-4">
+                  <div class="flex justify-between mb-2">
+                    <div>Name: </div>
+                    <div class="font-bold">Pizza</div>
+                  </div>
+                  <div class="flex justify-between mb-2">
+                    <div>Quantity</div>
+                    <div>1</div>
+                  </div>
+                  <div class="flex justify-between mb-2">
+                    <div>Image</div>
+                    <div className="">
+                      <Image
+                        // src={item.imageUrl}
+                        width={100}
+                        height={100}
+                        alt="banner image"
+                        className="w-12 h-12 rounded-lg"
+                        priority
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex justify-between mb-4">
+                  <div>Subtotal</div>
                   <div class="font-bold">Rs. 4999</div>
                 </div>
-                <div class="flex justify-between mb-2">
-                  <div>Large Pizza: Chicago Bulls (1x)</div>
-                  <div>-</div>
+
+                <div class="flex justify-between mb-4">
+                  <div>Delivery Fee</div>
+                  <div class="font-bold">Rs. 150</div>
                 </div>
-                <div class="flex justify-between mb-2">
-                  <div>Large Drink: Sprite (1x)</div>
-                  <div>-</div>
+
+                <div class="flex justify-between border-b border-gray-200 pb-4 mb-4">
+                  <div>Grand Total</div>
+                  <div class="font-bold">Rs. 5149</div>
                 </div>
-                <div class="flex justify-between mb-2">
-                  <div>
-                    3x Crunchy Zing Burger, 1x Fries Bucket, 1x Small Choco
-                    Bread
-                  </div>
-                  <div>-</div>
+
+                <div class="text-gray-600 mb-4">
+                  Note: Your order will be delivered within 45 to 60 minutes.
                 </div>
-                <div class="flex justify-between mb-2">
-                  <div>Large Pizza: Ohio Thrill (1x)</div>
-                  <div>-</div>
-                </div>
-              </div>
 
-              <div class="flex justify-between mb-4">
-                <div>Subtotal</div>
-                <div class="font-bold">Rs. 4999</div>
-              </div>
-
-              <div class="flex justify-between mb-4">
-                <div>Delivery Fee</div>
-                <div class="font-bold">Rs. 150</div>
-              </div>
-
-              <div class="flex justify-between border-b border-gray-200 pb-4 mb-4">
-                <div>Grand Total</div>
-                <div class="font-bold">Rs. 5149</div>
-              </div>
-
-              <div class="text-gray-600 mb-4">
-                Note: Your order will be delivered within 45 to 60 minutes.
-              </div>
-
-              <button
-                onClick={() => {
-                  if (isCustomerDetailsIncomplete()) {
-                    setSuccessMessage("Please enter your details");
-                    setShowItemAdded(true);
-                    setTimeout(() => {
-                      setShowItemAdded(false);
-                      setSuccessMessage(null);
-                    }, 3000);
-                  } else {
-                    handleSubmit();
-                    setTimeout(() => {
-                      setShowItemAdded(false);
-                      setSuccessMessage(null);
-                    }, 3000);
-                  }
-                }}
-                class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full"
-              >
-                Place Order
-              </button>
-
-              <div class="text-center mt-4">
-                <div
-                  // href="#"
-                  onClick={() => router.push("/")}
-                  class="text-gray-500 hover:text-red-500"
+                <button
+                  onClick={() => {
+                    if (isCustomerDetailsIncomplete()) {
+                      setSuccessMessage("Please enter your details");
+                      setShowItemAdded(true);
+                      setTimeout(() => {
+                        setShowItemAdded(false);
+                        setSuccessMessage(null);
+                      }, 3000);
+                    } else {
+                      handleSubmit();
+                      setTimeout(() => {
+                        setShowItemAdded(false);
+                        setSuccessMessage(null);
+                      }, 3000);
+                    }
+                  }}
+                  class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full"
                 >
-                  Continue to Add More Items
+                  Place Order
+                </button>
+
+                <div class="text-center mt-4 cursor-pointer">
+                  <div
+                    onClick={() => router.push("/")}
+                    class="text-gray-500 hover:text-red-500"
+                  >
+                    Continue to Add More Items
+                  </div>
                 </div>
               </div>
             </div>

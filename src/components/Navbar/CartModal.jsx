@@ -1,5 +1,5 @@
 "use client";
-import { React, useState, useEffect, useContext } from "react";
+import { React, useEffect, useContext } from "react";
 import { CloseButton } from "../Customization";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,15 +12,14 @@ import {
   selectTotalAmountItems,
 } from "@/src/redux/slices/cartSlice";
 import { useRouter } from "next/navigation";
-import { CartProvider, OrderContext, OrderProvider } from "./cartContext";
-import CustomerCheckout from "../CustomerCheckout";
+import { OrderContext } from "./cartContext";
 
 export default function CartModal({ isCartOpen, closeCart }) {
   const dispatch = useDispatch();
   const cartItem = useSelector(selectCartItems);
   const totalAmountItems = useSelector(selectTotalAmountItems);
   const grandTotal = totalAmountItems;
-  const { orderData, setOrderData } = useContext(OrderContext);
+  const { setOrderData } = useContext(OrderContext);
   const router = useRouter();
   const handleClick = () => {
     router.push("customercheckout");
@@ -80,23 +79,8 @@ export default function CartModal({ isCartOpen, closeCart }) {
             {/* <!-- Cart Item Names with Price and description --> */}
             <div className="flex flex-col justify-between p-4 h-[92%]  ">
               <div className="">
-                {cartItem.map((item, index) => (
-                  <div
-                    className="border-b mt-2"
-                    key={item._id}
-                    // value={orderData.item[index].itemId}
-                    // onChange={(e) =>
-                    //   // Update the corresponding itemId in orderData
-                    //   setOrderData({
-                    //     ...orderData,
-                    //     item: orderData.item.map((orderItem, i) =>
-                    //       i === index
-                    //         ? { ...orderItem, itemId: item._id }
-                    //         : orderItem
-                    //     ),
-                    //   })
-                    // }
-                  >
+                {cartItem.map((item) => (
+                  <div className="border-b mt-2" key={item._id}>
                     <div className="flex justify-between">
                       <div className="flex space-x-3 items-center">
                         <div className="">
