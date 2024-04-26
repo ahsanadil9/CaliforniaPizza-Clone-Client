@@ -13,7 +13,7 @@ const Loader = () => (
     }}
   >
     <svg
-      className="animate-spin h-9 w-9 mr-3 text-red-700"
+      className="animate-spin lg:h-14 lg:w-14 h-9 w-9 mr-3 text-red-700"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
