@@ -5,8 +5,15 @@ import { useContext, useEffect, useState } from "react";
 import { OrderContext } from "../Navbar/cartContext";
 import Loader from "../Customization/Loader";
 import { ResponseMessage } from "../Customization";
+import { useRouter } from "next/navigation";
+import { clearCart } from "@/src/redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
+// import { useHistory } from "react-router-dom";
 
 export default function CustomerCheckout() {
+  const disptach = useDispatch();
+  // const router_history = useHistory();
+
   const [selectedMethod, setSelectedMethod] = useState(null);
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
@@ -16,6 +23,7 @@ export default function CustomerCheckout() {
 
   const { orderData } = useContext(OrderContext);
   console.log("order Data customer checkout: ", orderData);
+  const router = useRouter();
 
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
@@ -25,40 +33,36 @@ export default function CustomerCheckout() {
     city: "",
     postalCode: "",
   });
-  const [customerId, setCustomerId] = useState("");
-  console.log("cust id: ", customerId);
-  const fetchOrder = {
-    items: orderData.items,
-    customer: customerId,
-  };
-  console.log("fetch order: ", fetchOrder);
 
-  const placeOrder = async () => {
-    setLoading(true);
-
-    try {
-      const response = await createOrdersData(fetchOrder);
-      console.log("response place order: ", response);
-    } catch (error) {
-      console.error("Error submitting order info:", error);
-    } finally {
-      setLoading(false);
-    }
+  const [showItemAdded, setShowItemAdded] = useState(false);
+  const clearForm = () => {
+    setCustomerInfo({
+      name: "",
+      emailAddress: "",
+      phoneNo: "",
+      deliveryAddress: "",
+      city: "",
+      postalCode: "",
+    });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
     setLoading(true);
-
     try {
       const response = await createCustomerData(customerInfo);
       const customerID = response.data._id;
-      setCustomerId(customerID);
-      // // Now that we have the customer ID, we can place the order
-      placeOrder();
+      const fetchOrder = {
+        items: orderData.items,
+        customer: customerID,
+      };
+      await createOrdersData(fetchOrder);
+      setSuccessMessage("Order placed successfully");
+      setShowItemAdded(true);
       setTimeout(() => {
-        setSuccessMessage("Order placed successfully");
-      }, 1500);
+        setShowItemAdded(false);
+        setSuccessMessage(null);
+      }, 4000);
+      clearForm();
     } catch (error) {
       console.error("Error submitting customer info:", error);
     } finally {
@@ -77,6 +81,32 @@ export default function CustomerCheckout() {
       !postalCode
     );
   };
+  const clearOrder = () => {
+    setCustomerInfo({
+      name: "",
+      emailAddress: "",
+      phoneNo: "",
+      deliveryAddress: "",
+      city: "",
+      postalCode: "",
+    });
+
+    disptach(clearCart());
+
+    router.refresh();
+
+    // reset order data here
+    orderData.items = [];
+    setSuccessMessage("Order cleared successfully!");
+    setShowItemAdded(true);
+    setTimeout(() => {
+      setShowItemAdded(false);
+      setSuccessMessage(null);
+    }, 3000);
+    router.push("/");
+    // window.location.reload();
+  };
+
   return (
     <>
       {/* <Navbar /> */}
@@ -307,10 +337,7 @@ export default function CustomerCheckout() {
               <div class="flex flex-col md:flex-row justify-between">
                 <div class="text-xl font-bold mb-4 md:mb-0">Your Order</div>
                 <div class="flex items-center">
-                  <a href="#" class="text-gray-500 hover:text-red-500 mr-2">
-                    Edit Order
-                  </a>
-                  <a href="#" class="text-red-500">
+                  <a href="#" class="text-red-500" onClick={clearOrder}>
                     Clear Order
                   </a>
                 </div>
@@ -357,45 +384,48 @@ export default function CustomerCheckout() {
                 <div class="font-bold">Rs. 5149</div>
               </div>
 
-              {/* <div class="flex items-center mb-4">
-                <input
-                  type="text"
-                  placeholder="Enter Voucher / Promo Code"
-                  class="border border-gray-200 rounded-md px-4 py-2 mr-2"
-                />
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">
-                  Apply
-                </button>
-              </div> */}
-
               <div class="text-gray-600 mb-4">
                 Note: Your order will be delivered within 45 to 60 minutes.
               </div>
 
               <button
-                onClick={handleSubmit}
+                onClick={() => {
+                  if (isCustomerDetailsIncomplete()) {
+                    setSuccessMessage("Please enter your details");
+                    setShowItemAdded(true);
+                    setTimeout(() => {
+                      setShowItemAdded(false);
+                      setSuccessMessage(null);
+                    }, 3000);
+                  } else {
+                    handleSubmit();
+                    setTimeout(() => {
+                      setShowItemAdded(false);
+                      setSuccessMessage(null);
+                    }, 3000);
+                  }
+                }}
                 class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full"
               >
                 Place Order
               </button>
 
               <div class="text-center mt-4">
-                <a href="#" class="text-gray-500 hover:text-red-500">
+                <div
+                  // href="#"
+                  onClick={() => router.push("/")}
+                  class="text-gray-500 hover:text-red-500"
+                >
                   Continue to Add More Items
-                </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
         {loading && <Loader />}
-        {successMessage && <ResponseMessage message={successMessage} />}
-        {/* Display message if order information is not available */}
-        {(!orderData || isCustomerDetailsIncomplete()) && !loading && (
-          <div className="text-center mt-4">
-            {<ResponseMessage message="Please enter your details" />}
-          </div>
+        {showItemAdded && successMessage && (
+          <ResponseMessage message={successMessage} />
         )}
-        {/* Payment Information Section - Add this section later */}
       </div>
     </>
   );
