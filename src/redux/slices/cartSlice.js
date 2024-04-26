@@ -12,12 +12,13 @@ const cartSlice = createSlice({
       const existingItemIndex = state.cartItems.findIndex(
         (item) => item._id === newItem._id
       );
-
       if (existingItemIndex !== -1) {
-        state.cartItems[existingItemIndex].quantity++;
+        const updatedItem = { ...state.cartItems[existingItemIndex] };
+        updatedItem.quantity++;
+        state.cartItems[existingItemIndex] = updatedItem;
       } else {
-        newItem.quantity = 1;
-        state.cartItems.push(newItem);
+        const newCartItem = { ...newItem, quantity: 1 };
+        state.cartItems.push(newCartItem);
       }
     },
 
@@ -36,18 +37,6 @@ const cartSlice = createSlice({
         item.quantity -= 1;
       }
     },
-    deleteCartItem(state, action) {
-      const itemId = action.payload;
-      const userConfirmed = window.confirm(
-        "Are you sure you want to delete this item?"
-      );
-      if (userConfirmed) {
-        const updatedCartItems = state.cartItems.filter(
-          (item) => item._id !== itemId
-        );
-        return { ...state, cartItems: updatedCartItems };
-      }
-    },
     calculateTotalAmount(state, action) {
       const totalAmount = state.cartItems.reduce((acc, curr) => {
         if (!isNaN(curr.price) && !isNaN(curr.quantity)) {
@@ -59,8 +48,23 @@ const cartSlice = createSlice({
 
       return { ...state, totalAmountItems: totalAmount };
     },
+    deleteCartItem(state, action) {
+      const itemId = action.payload;
+      const userConfirmed = window.confirm(
+        "Are you sure you want to delete this item?"
+      );
+      if (userConfirmed) {
+        const updatedCartItems = state.cartItems.filter(
+          (item) => item._id !== itemId
+        );
+        return { ...state, cartItems: updatedCartItems };
+      }
+
+      return calculateTotalAmount(state, action);
+    },
     clearCart: (state) => {
       state.cartItems = [];
+      state.totalAmountItems = 0;
     },
   },
 });

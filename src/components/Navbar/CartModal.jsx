@@ -48,6 +48,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
 
   const handleDelete = (itemId) => {
     dispatch(deleteCartItem(itemId));
+    dispatch(calculateTotalAmount());
   };
 
   useEffect(() => {

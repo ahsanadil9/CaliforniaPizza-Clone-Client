@@ -6,7 +6,7 @@ const ResponseMessage = ({ message }) => {
     <div
       style={{
         position: "fixed",
-        bottom: 20, // Adjust as needed
+        bottom: 20,
         left: "50%",
         transform: "translateX(-50%)",
         backgroundColor: "#72ff89",
@@ -17,6 +17,7 @@ const ResponseMessage = ({ message }) => {
         justifyContent: "center",
         zIndex: 1000,
       }}
+      className="w-64 md:w-80 lg:w-96"
     >
       <Image
         width="30"
@@ -24,7 +25,12 @@ const ResponseMessage = ({ message }) => {
         src="https://img.icons8.com/color/48/verified-account--v1.png"
         alt="verified-account--v1"
       />
-      <span style={{ marginLeft: "10px", fontWeight: "500" }}>{message}</span>
+      <span
+        className="text-sm md:text-lg lg:text-xl"
+        style={{ marginLeft: "10px", fontWeight: "500" }}
+      >
+        {message}
+      </span>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 import { React, useState } from "react";
 import Image from "next/legacy/image";
-// import Image from "next/image";
 import Link from "next/link";
 import { CartModal } from "..";
 import { useSelector } from "react-redux";
@@ -15,7 +14,6 @@ export default function Navbar() {
   const closeCart = () => {
     setIsCartOpen(false);
   };
-  // calc cart length on the cart icon
   const cartItem = useSelector(selectCartItems);
   const cartLength = cartItem.length;
 
@@ -32,12 +30,8 @@ export default function Navbar() {
               <Image
                 src="https://www.californiapizza.com.pk/_next/image?url=https%3A%2F%2Fconsole.indolj.io%2Fupload%2F1658409985-Logo-california.png&w=128&q=75"
                 alt="California Pizza Logo"
-                // // fill
                 width={10}
                 height={10}
-                // layout="fill"
-                // layout="responsive"
-                // objectFit="cover"
                 sizes="(max-width: 768px) 100vw, 100vw"
               />
             </div>
@@ -53,7 +47,7 @@ export default function Navbar() {
                   height={0}
                   className="pr-1 w-4 h-3 mt-[1px] lg:w-5 lg:h-4 lg:mt-[2px]"
                 />
-                <span className=""> 034-336-034-31</span>
+                <span className="">034-336-034-31</span>
               </div>
             </Link>
           </div>
@@ -72,17 +66,10 @@ export default function Navbar() {
               width={10}
               height={10}
               priority
-              // layout="responsive"
-              // layout="fill"
-              // fill
-              // objectFit=""
               sizes="(max-width: 768px) 100vw, 100vw"
               className="h-6 ml-1 mt-[2px] w-5 lg:h-8 lg:w-7 hover:rounded-lg lg:hover:rounded-md hover:bg-gray-50"
             />
           </div>
-
-          {/* another work */}
-          <div> </div>
         </div>
       </nav>
     </>
