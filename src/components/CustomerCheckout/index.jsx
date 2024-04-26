@@ -276,6 +276,7 @@ export default function CustomerCheckout() {
                   Postal Code
                 </label>
               </div>
+
               <input
                 type="tel"
                 id="postalCode"
