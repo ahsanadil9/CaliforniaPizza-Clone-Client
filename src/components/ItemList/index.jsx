@@ -103,16 +103,16 @@ export default function ItemList() {
     },
   ];
 
+  // search your favourite pizza
+  const filteredItems = itemsArray.filter((itemSearch) => {
+    const itemName = itemSearch.name.toLowerCase();
+    return itemName.startsWith(searchItem.toLowerCase());
+  });
+
   useEffect(() => {
     dispatch(fetchItems());
     setLoading(false);
   }, []);
-
-  // search your favourite pizza
-  const filteredItems = pizzaItems.filter((itemSearch) => {
-    const itemName = itemSearch.name.toLowerCase();
-    return itemName.startsWith(searchItem.toLowerCase());
-  });
 
   const categories = [
     {
@@ -128,31 +128,28 @@ export default function ItemList() {
   ];
 
   return (
-    <main className="flex flex-col items-center mb-36">
-      <div className="max-w-5xl px-4">
-        <Search setSearchItem={setSearchItem} />
-        {/* {categories.map((category) => (
+    <>
+      <Search setSearchItem={setSearchItem} />
+      <main className="flex flex-col items-center mb-36">
+        <div className="max-w-5xl px-6">
+          {/* {categories.map((category) => (
           <section key={category.id}>
             <h1 className="py-6 font-serif text-base text-center md:text-2xl lg:p-12 lg:text-3xl lg:mt-3">
               {category.name}
             </h1> */}
 
-        {/* pizza item cart selection */}
-        {loading ? (
-          <Loader />
-        ) : (
-          itemsArray.length > 0 && (
+          {/* pizza item cart selection */}
+          {loading ? (
+            <Loader />
+          ) : (
             <div className="grid place-items-center grid-cols-2 gap-3 md:gap-12 lg:grid-cols-3 lg:gap-14 lg:pb-48 max-w-full mt-7">
-              {itemsArray.map((item, index) => (
+              {filteredItems.map((item) => (
                 <Item item={item} key={item._id} />
               ))}
             </div>
-          )
-        )}
-
-        {/* </section>
-        ))} */}
-      </div>
-    </main>
+          )}
+        </div>
+      </main>
+    </>
   );
 }

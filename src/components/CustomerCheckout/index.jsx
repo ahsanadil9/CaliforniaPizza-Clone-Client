@@ -114,7 +114,7 @@ export default function CustomerCheckout() {
         setShowItemAdded(false);
         setSuccessMessage(null);
         setOrderPlaced(true);
-      }, 2500);
+      }, 3000);
       clearForm();
     } catch (error) {
       console.error("Error submitting customer info:", error);
@@ -219,7 +219,7 @@ export default function CustomerCheckout() {
 
               <form className="flex flex-col w-full">
                 <div className="flex mt-4">
-                  <div className="w-1/5 mr-2">
+                  <div className="w-1/3 mr-2 lg:w-1/5 lg:mr-0 md:w-1/6 md:mr-2">
                     <label
                       className="text-sm font-medium mb-1 block"
                       htmlFor="title"
@@ -376,12 +376,14 @@ export default function CustomerCheckout() {
                   className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 w-full"
                 />
               </form>
-              <div class="mt-4">
-                <h2 class="text-lg font-medium mb-2">Payment Information</h2>
+              <div className="mt-4">
+                <h2 className="text-lg font-medium mb-2">
+                  Payment Information
+                </h2>
 
-                <div class="flex items-center">
+                <div className="flex items-center">
                   <Image
-                    class="h-5 mr-2"
+                    className="h-5 mr-2"
                     src="https://www.californiapizza.com.pk/_next/image?url=%2Fassets%2Fimg%2FCash.png&w=128&q=75"
                     alt="Cash logo"
                     onClick={() => handleMethodSelect("cash")}
@@ -390,7 +392,7 @@ export default function CustomerCheckout() {
                     height={100}
                   />
                   <Image
-                    class="h-5 mr-2"
+                    className="h-5 mr-2"
                     src="https://www.californiapizza.com.pk/_next/image?url=%2Fassets%2Fimg%2FCard.png&w=128&q=75"
                     alt="OnlinePayment logo"
                     onClick={() => handleMethodSelect("online")}
@@ -401,7 +403,7 @@ export default function CustomerCheckout() {
                 </div>
 
                 {selectedMethod === "cash" && (
-                  <div class="mt-4">
+                  <div className="mt-4">
                     <label htmlFor="cashAmount">Change Request</label>
 
                     <input
@@ -420,14 +422,14 @@ export default function CustomerCheckout() {
           {/* ---------------------------------------------- */}
           {/* Order Details Section */}
           <div className=" md:w-1/2 xl:w-full lg:w-full bg-gray-100 rounded-lg p-4">
-            <div class=" px-4 py-8 flex flex-col h-full justify-between">
-              <div class="flex flex-col md:flex-row justify-between pb-3">
-                <div class="text-xl font-bold mb-4 md:mb-0">Your Order</div>
+            <div className=" px-4 py-8 flex flex-col h-full justify-between">
+              <div className="flex flex-col md:flex-row justify-between pb-3">
+                <div className="text-xl font-bold mb-4 md:mb-0">Your Order</div>
                 {!orderPlaced && cartItem.length > 0 && (
-                  <div class="flex items-center">
+                  <div className="flex items-center">
                     <a
                       href="#"
-                      class="text-red-500"
+                      className="text-red-500"
                       onClick={handleClearOrderAndRedirect}
                     >
                       Clear Order
@@ -438,16 +440,16 @@ export default function CustomerCheckout() {
 
               <div className="">
                 <div
-                  class="border-b border-gray-200 mb-4 pb-4 overflow-y-auto"
+                  className="border-b border-gray-200 mb-4 pb-4 overflow-y-auto"
                   style={{ maxHeight: "300px", overflowY: "auto" }}
                 >
                   {cartItem.length > 0 ? (
                     cartItem.map((item) => (
                       <div
-                        class="border-b border-gray-200 mb-4 pb-4 pr-4"
+                        className="border-b border-gray-200 mb-4 pb-4 pr-4"
                         key={item._id}
                       >
-                        <div class="flex justify-between mb-2">
+                        <div className="flex justify-between mb-2">
                           <div>Image</div>
                           <div className="">
                             <Image
@@ -460,15 +462,15 @@ export default function CustomerCheckout() {
                             />
                           </div>
                         </div>
-                        <div class="flex justify-between mb-2">
+                        <div className="flex justify-between mb-2">
                           <div>Name </div>
-                          <div class="font-bold">{item.name}</div>
+                          <div className="font-bold">{item.name}</div>
                         </div>
-                        <div class="flex justify-between mb-2">
+                        <div className="flex justify-between mb-2">
                           <div>Quantity</div>
                           <div>{item.quantity}</div>
                         </div>
-                        <div class="flex justify-between mb-2">
+                        <div className="flex justify-between mb-2">
                           <div>Price</div>
                           <div>{item.price}</div>
                         </div>
@@ -476,7 +478,7 @@ export default function CustomerCheckout() {
                     ))
                   ) : (
                     <div
-                      class="text-gray-600 text-center flex font-bold xl:text-2xl lg:text-lg justify-center items-center align-middle h-full"
+                      className="text-gray-600 text-center flex font-bold xl:text-2xl lg:text-lg justify-center items-center align-middle h-full"
                       style={{
                         height: "300px",
                         display: "flex",
@@ -489,21 +491,21 @@ export default function CustomerCheckout() {
                   )}
                 </div>
 
-                <div class="flex justify-between mb-4">
+                <div className="flex justify-between mb-4">
                   <div>Subtotal</div>
-                  <div class="font-bold">Rs. {subTotal}</div>
+                  <div className="font-bold">Rs. {subTotal}</div>
                 </div>
 
-                <div class="flex justify-between mb-4">
+                <div className="flex justify-between mb-4">
                   <div>Delivery Fee</div>
-                  <div class="font-bold">
+                  <div className="font-bold">
                     Rs. {subTotal > 0 ? deliveryFee150 : deliveryFee0}
                   </div>
                 </div>
 
-                <div class="flex justify-between border-b border-gray-200 pb-4 mb-4">
+                <div className="flex justify-between border-b border-gray-200 pb-4 mb-4">
                   <div>Grand Total</div>
-                  <div class="font-bold">
+                  <div className="font-bold">
                     Rs.
                     {subTotal > 0
                       ? grandTotal + deliveryFee150
@@ -511,7 +513,7 @@ export default function CustomerCheckout() {
                   </div>
                 </div>
                 {orderPlaced && (
-                  <div class="text-gray-600 mb-4">
+                  <div className="text-gray-600 mb-4">
                     Note: Your order will be delivered within 45 to 60 minutes.
                   </div>
                 )}
@@ -534,34 +536,34 @@ export default function CustomerCheckout() {
                         }, 3000);
                       }
                     }}
-                    class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full"
+                    className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-md w-full"
                   >
                     Place Order
                   </button>
                 ) : (
-                  <div class="bg-gray-500 text-center  text-white font-bold py-2 px-4 rounded-md w-full">
-                    <div class="flex space-x-2 justify-center items-center text-sm lg:text-lg">
-                      <span class="sr-only">Loading...</span>
+                  <div className="bg-gray-500 text-center  text-white font-bold py-2 px-4 rounded-md w-full">
+                    <div className="flex space-x-2 justify-center items-center text-sm lg:text-lg">
+                      <span className="sr-only">Loading...</span>
                       Preparing your order
-                      <div class="lg:h-2 lg:w-2 h-1 w-1 mt-1 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                      <div class="lg:h-2 lg:w-2 h-1 w-1 mt-1 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                      <div class="lg:h-2 lg:w-2 h-1 w-1 mt-1 bg-white rounded-full animate-bounce"></div>
+                      <div className="lg:h-2 lg:w-2 h-1 w-1 mt-1 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                      <div className="lg:h-2 lg:w-2 h-1 w-1 mt-1 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                      <div className="lg:h-2 lg:w-2 h-1 w-1 mt-1 bg-white rounded-full animate-bounce"></div>
                     </div>
                   </div>
                 )}
                 {!orderPlaced &&
                   (cartItem.length > 0 ? (
-                    <div class="text-center mt-4 cursor-pointer">
+                    <div className="text-center mt-4 cursor-pointer">
                       <div
                         onClick={() => router.push("/")}
-                        class="text-gray-500 hover:text-red-500"
+                        className="text-gray-500 hover:text-red-500"
                       >
                         Continue to Add More Items
                       </div>
                     </div>
                   ) : (
                     <div
-                      class="text-center mt-4 cursor-pointer hover:text-red-500 text-gray-500"
+                      className="text-center mt-4 cursor-pointer hover:text-red-500 text-gray-500"
                       onClick={() => router.push("/")}
                     >
                       Click here to add items to the cart

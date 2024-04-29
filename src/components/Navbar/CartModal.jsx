@@ -69,7 +69,7 @@ export default function CartModal({ isCartOpen, closeCart }) {
             onClick={closeCart}
           />
           {/* <!-- Cart content --> */}
-          <div className="absolute w-[20rem] h-full bg-white lg:rounded-l-2xl shadow overflow-y-scroll">
+          <div className="absolute w-[20rem] h-full bg-white lg:rounded-l-2xl shadow ">
             {/* <!-- Cart header --> */}
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
               <h3 className="text-xl font-semibold text-gray-900">Your Cart</h3>
@@ -78,10 +78,10 @@ export default function CartModal({ isCartOpen, closeCart }) {
               </div>
             </div>
             {/* <!-- Cart Item Names with Price and description --> */}
-            <div className="flex flex-col justify-between p-4 h-[92%]  ">
-              <div className="">
+            <div className="flex flex-col justify-between p-4 h-full">
+              <div className="overflow-y-auto">
                 {cartItem.map((item) => (
-                  <div className="border-b mt-2" key={item._id}>
+                  <div className="border-b mt-2 pr-2" key={item._id}>
                     <div className="flex justify-between">
                       <div className="flex space-x-3 items-center">
                         <div className="">
@@ -179,20 +179,22 @@ export default function CartModal({ isCartOpen, closeCart }) {
                     </div>
                   </div>
 
-                  <div
-                    className="relative cursor-pointer flex justify-center items-center bg-red-700 h-12 rounded-md flex-grow-1"
-                    onClick={handleClick}
-                  >
-                    <div className="text-white font-bold">Checkout</div>
-                    <div className="absolute flex right-0 mr-6">
-                      <Image
-                        src="/assets/checkout.png"
-                        alt=""
-                        width={50}
-                        height={50}
-                        className="h-9 w-9 rounded-full bg-white "
-                      />
-                    </div>
+                  <div className="bg-red-700 cursor-pointer rounded-md">
+                    <button
+                      className=" cursor-pointer px-4 flex justify-center items-center bg-red-700 h-12 rounded-md flex-grow-1"
+                      onClick={handleClick}
+                    >
+                      <div className="text-white pl-16 font-bold">Checkout</div>
+                      <div className="absolute flex right-0 mr-6">
+                        <Image
+                          src="/assets/checkout.png"
+                          alt=""
+                          width={50}
+                          height={50}
+                          className="h-9 w-9 rounded-full bg-white "
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
               )}
