@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# California Pizza Website Clone - Client Site
+This project is a frontend clone of the California Pizza website, designed to allow users to browse and order pizzas, view details, and complete purchases. Upon clicking the 'order place' button, the selected items are forwarded to the admin for further processing.
 
-## Getting Started
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Running the Project](#running-the-project)
+- [Usage](#usage)
+  - [Client-Side](#client-side)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Future Implementations](#future-implementations)
 
-First, run the development server:
+## Features
+- User roles
+  - Users can browse and order pizzas, view details, and complete purchases
+- Fully responsive design
+- Built with Next.js
+- Full validations and messages
+- State management with Redux
+- API integration
+- Custom styling with TailwindCSS
+- Utilizing Axios, the frontend communicates with the backend server, which seamlessly fetches data from the MongoDB database
+- Reusable components for better code organization and maintainability
 
+## Tech Stack
+- **Frontend**:
+  - [Next.js](https://nextjs.org/) - Version 14.0.1
+  - [React](https://reactjs.org/) - Version 18.2.0
+  - [TailwindCSS](https://tailwindcss.com/) - Latest Version
+  - [Context API](https://reactjs.org/docs/context.html) - React Context API
+  
+- **State Management**:
+  - [Redux Toolkit](https://redux-toolkit.js.org/) - Version 2.1.0
+
+- **API Integration**:
+  - [Axios](https://axios-http.com/) - Version 1.6.8
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ahsanadil9/CaliforniaPizza-Clone-Client.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd california-pizza-clone
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+
+## Running the Project
+To start the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Client-Side
+- Browse available pizzas.
+- Add pizzas to the cart.
+- Proceed to checkout and enter personal information and location.
+- Place the order. The order details will be sent to the admin for processing.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-## Learn More
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
 
-To learn more about Next.js, take a look at the following resources:
+## Acknowledgements
+The backend and admin repositories are currently in progress. You can find the repositories here:
+- [Backend Repository (Work in Progress)](https://github.com/ahsanadil9/CaliforniaPizza-Clone-Backend)
+- [Admin Repository (Work in Progress)](https://github.com/ahsanadil9/CaliforniaPizza-Clone-Admin)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is inspired by [California Pizza](https://www.californiapizza.com).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Future Implementations
 
-## Deploy on Vercel
+- **Different Categories**: Implement functionality to display different categories of pizzas. Users can explore various categories and view items within each category.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Advanced Search**: Enhance the search functionality to allow users to search for pizzas based on various criteria such as toppings, size, or price range.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Reviews and Ratings**: Enable users to leave reviews and ratings for pizzas they've ordered, providing valuable feedback to other users.
+
+- **User Authentication**: Introduce user authentication and user accounts. Users can create accounts, log in, and track their order history.
+
+---
