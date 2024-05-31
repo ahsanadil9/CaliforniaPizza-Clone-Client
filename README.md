@@ -1,5 +1,5 @@
 # California Pizza Website Clone - Client Site
-This project is a frontend clone of the California Pizza website, designed to allow users to browse and order pizzas, view details, and complete purchases.
+This project is a frontend clone of the California Pizza website, designed to allow users to browse and order pizzas, view details, and complete purchases. Upon clicking the 'order place' button, the selected items are forwarded to the admin for further processing.
 
 ## Table of Contents
 - [Features](#features)
