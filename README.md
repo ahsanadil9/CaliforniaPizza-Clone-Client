@@ -63,11 +63,10 @@ npm run dev
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-``markdown
+
 This project is inspired by [California Pizza](https://www.californiapizza.com).
 The backend and admin repositories are currently in progress. You can find the repositories here:
 
 - [Backend Repository (Work in Progress)](https://github.com/ahsanadil9/CaliforniaPizza-Clone-Backend)
 - [Admin Repository (Work in Progress)](https://github.com/ahsanadil9/CaliforniaPizza-Clone-Admin)
 ```
-  
