@@ -22,10 +22,21 @@ This project is a frontend clone of the California Pizza website, designed to al
 - State management with Redux
 - API integration
 - Custom styling with TailwindCSS
+- Utilizing Axios, the frontend communicates with the backend server, which seamlessly fetches data from the MongoDB database
+- Reusable components for better code organization and maintainability
 
 ## Tech Stack
-- **Frontend**: Next.js, React, TailwindCSS
-- **State Management**: Redux
+- **Frontend**:
+  - [Next.js](https://nextjs.org/) - Version 14.0.1
+  - [React](https://reactjs.org/) - Version 18.2.0
+  - [TailwindCSS](https://tailwindcss.com/) - Latest Version
+  - [Context API](https://reactjs.org/docs/context.html) - React Context API
+  
+- **State Management**:
+  - [Redux Toolkit](https://redux-toolkit.js.org/) - Version 2.1.0
+
+- **API Integration**:
+  - [Axios](https://axios-http.com/) - Version 1.6.8
 
 ## Installation
 1. Clone the repository:
