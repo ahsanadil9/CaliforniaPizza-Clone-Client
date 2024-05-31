@@ -74,7 +74,6 @@ export default function Item({ item }) {
               <p className="text-red-600 pr-1">
                 <del className="">
                   Rs.
-                  {/* Rs.<span className="">800{item.discountedPrice}</span> */}
                   {item.discountedPrice ? (
                     <span className="">{item.discountedPrice}</span>
                   ) : (

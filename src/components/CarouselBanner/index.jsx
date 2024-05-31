@@ -35,7 +35,7 @@ class CarouselBanner extends Component {
 
   render() {
     return (
-      <div className="">
+      <div>
         <Carousel
           showThumbs={false}
           dynamicHeight={true}
@@ -43,13 +43,12 @@ class CarouselBanner extends Component {
           interval={1000}
         >
           {this.state.Banner.map((slider) => (
-            <div key={slider.id} className="">
+            <div key={slider.id}>
               <Image
                 src={slider.img}
                 width={1920}
                 height={500}
                 alt="banner image"
-                className=""
                 priority
               />
             </div>

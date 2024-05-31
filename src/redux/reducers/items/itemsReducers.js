@@ -3,7 +3,6 @@ import {
   FETCH_ITEMS_REQUEST,
   FETCH_ITEMS_SUCCESS,
 } from "../../actions/items/itemsAction";
-import { addToCart } from "../../slices/cartSlice";
 
 const initialState = {
   items: [],

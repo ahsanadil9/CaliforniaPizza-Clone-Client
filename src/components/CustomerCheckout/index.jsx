@@ -13,7 +13,6 @@ import {
   selectTotalAmountItems,
 } from "@/src/redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Navbar from "../Navbar";
 import Link from "next/link";
 
 export default function CustomerCheckout() {

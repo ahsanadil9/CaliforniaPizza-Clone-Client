@@ -14,6 +14,7 @@ export default function ItemList() {
     .filter((item) => item && typeof item === "object");
   const [loading, setLoading] = useState(true);
 
+  // Array of object used before using API
   const pizzaItems = [
     {
       id: 1,
@@ -22,7 +23,7 @@ export default function ItemList() {
       description: "Made in Creamy sauce, Chicken Tikka, Onion, Cheese",
       price: 749,
       discountedPrice: 547,
-      // image: "/assets/pizzaImage.webp",
+      // image: "/assets/pizzaImage.webp", //locally stored images
       image:
         "https://californiapizza.com.pk/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fimages%2F1696497545-4-min.jpeg&w=384&q=75",
       quantity: 1,
@@ -114,6 +115,7 @@ export default function ItemList() {
     setLoading(false);
   }, []);
 
+  // Future Implementation
   const categories = [
     {
       name: "deserts",
@@ -132,12 +134,6 @@ export default function ItemList() {
       <Search setSearchItem={setSearchItem} />
       <main className="flex flex-col items-center mb-36">
         <div className="max-w-5xl px-6">
-          {/* {categories.map((category) => (
-          <section key={category.id}>
-            <h1 className="py-6 font-serif text-base text-center md:text-2xl lg:p-12 lg:text-3xl lg:mt-3">
-              {category.name}
-            </h1> */}
-
           {/* pizza item cart selection */}
           {loading ? (
             <Loader />

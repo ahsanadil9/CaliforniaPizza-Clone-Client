@@ -141,7 +141,6 @@ export default function CartModal({ isCartOpen, closeCart }) {
                         </div>
                       </div>
                     </div>
-                    {/* {updateOrderData(item._id, item.quantity)} */}
 
                     <div className="items name and desc price mb-8 mt-4 text-sm font-light">
                       <div className="">
