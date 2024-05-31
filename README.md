@@ -42,6 +42,7 @@ This project is a frontend clone of the California Pizza website, designed to al
 To start the development server:
 ```bash
 npm run dev
+```
 
 ## Usage
 
