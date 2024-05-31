@@ -10,6 +10,8 @@ This project is a frontend clone of the California Pizza website, designed to al
   - [Client-Side](#client-side)
 - [Contributing](#contributing)
 - [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Future Implementations](#future-implementations)
 
 ## Features
 - User roles
@@ -68,5 +70,15 @@ The backend and admin repositories are currently in progress. You can find the r
 - [Admin Repository (Work in Progress)](https://github.com/ahsanadil9/CaliforniaPizza-Clone-Admin)
 
 This project is inspired by [California Pizza](https://www.californiapizza.com).
+
+## Future Implementations
+
+- **Different Categories**: Implement functionality to display different categories of pizzas. Users can explore various categories and view items within each category.
+
+- **Advanced Search**: Enhance the search functionality to allow users to search for pizzas based on various criteria such as toppings, size, or price range.
+
+- **Reviews and Ratings**: Enable users to leave reviews and ratings for pizzas they've ordered, providing valuable feedback to other users.
+
+- **User Authentication**: Introduce user authentication and user accounts. Users can create accounts, log in, and track their order history.
 
 ---
