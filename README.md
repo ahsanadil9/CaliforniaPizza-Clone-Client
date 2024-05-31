@@ -28,7 +28,7 @@ This project is a frontend clone of the California Pizza website, designed to al
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/california-pizza-clone.git
+   git clone https://github.com/ahsanadil9/CaliforniaPizza-Clone-Client.git
    ```
 2. Navigate to the project directory:
    ```bash
