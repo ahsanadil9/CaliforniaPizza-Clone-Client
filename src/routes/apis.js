@@ -1,6 +1,6 @@
 // BASE URL
 export const BASE_URI =
-  "https://californiapizza-clone-backend-production.up.railway.app/api/v1";
+  "https://california-pizza-clone-backend.vercel.app/api/v1";
 
 // 1. Orders
 export const getOrders = `${BASE_URI}/orders`;
